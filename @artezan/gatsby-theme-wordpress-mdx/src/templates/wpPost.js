@@ -1,4 +1,6 @@
 /** @jsx jsx */
+import * as React from 'react'
+
 import { jsx, Styled, useThemeUI, css } from 'theme-ui'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
@@ -26,7 +28,6 @@ export const WpPostTemplate = ({
     context.theme.colors.secondary,
     tags ? tags.length : 2
   )
-
   return (
     <article
       sx={{
@@ -39,10 +40,12 @@ export const WpPostTemplate = ({
         keywords={tags || []}
         siteURL={site.siteMetadata.siteURL}
         image={
-          featuredImage ? featuredImage.localFile.childImageSharp.fluid : ''
+          featuredImage && featuredImage.localFile
+            ? featuredImage.localFile.childImageSharp.fluid.src.replace('/', '')
+            : ''
         }
       />
-      {featuredImage && (
+      {featuredImage && featuredImage.localFile && (
         <Styled.div
           sx={{
             display: 'flex',
@@ -72,7 +75,13 @@ export const WpPostTemplate = ({
         }}
       >
         <Styled.h1>{title}</Styled.h1>
-        {formatDate(date)}
+        {formatDate(date)}{' '}
+        {author && (
+          <>
+            {' '}
+            <span>| By {author} </span>{' '}
+          </>
+        )}
       </Styled.div>
       {tags && (
         <ul
@@ -98,8 +107,8 @@ export const WpPostTemplate = ({
       <Styled.div
         sx={css({
           img: {
-            width: '100%',
-            height: 'auto'
+            width: '100%  !important',
+            height: 'auto  !important'
           }
         })}
         dangerouslySetInnerHTML={{ __html: content }}
@@ -109,7 +118,10 @@ export const WpPostTemplate = ({
 }
 
 const WpPost = ({ data }) => {
-  const { wordpressPost: post, site } = data
+  const {
+    mdxWpPosts: { wpData: post },
+    site
+  } = data
   return (
     <Content config={site.config}>
       <WpPostTemplate
@@ -117,8 +129,8 @@ const WpPost = ({ data }) => {
         categories={post.categories}
         tags={post.tags}
         title={post.title}
-        date={post.date}
-        // author={post.author}
+        date={data.mdxWpPosts.date}
+        author={post.author.name}
         featuredImage={post.featured_media}
         excerpt={post.excerpt}
         site={site}
@@ -135,36 +147,33 @@ export const pageQuery = graphql`
       siteMetadata {
         title
         siteURL
-        config {
-          multipleBackground
-        }
       }
     }
-    wordpressPost(id: { eq: $id }) {
-      id
-      title
-      slug
-      content
-      excerpt
-      date(formatString: "MMMM DD, YYYY")
-      categories {
-        name
+    mdxWpPosts(id: { eq: $id }) {
+      date
+      wpData {
+        title
         slug
-      }
-      tags {
-        name
-        slug
-      }
-      # author {
-      #   name
-      #   slug
-      # }
-      featured_media {
-        localFile {
-          childImageSharp {
-            fluid(maxWidth: 300) {
-              ...GatsbyImageSharpFluid
-              originalName
+        content
+        excerpt
+        categories {
+          name
+          slug
+        }
+        tags {
+          name
+          slug
+        }
+        author {
+          name
+        }
+        featured_media {
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 800) {
+                ...GatsbyImageSharpFluid
+                originalName
+              }
             }
           }
         }

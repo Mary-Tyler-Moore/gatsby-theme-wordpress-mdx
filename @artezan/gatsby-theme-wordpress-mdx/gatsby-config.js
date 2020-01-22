@@ -26,14 +26,14 @@ module.exports = options => {
       {
         resolve: 'gatsby-plugin-layout',
         options: {
-          component: require.resolve('./src/layouts/layout.jsx')
+          component: require.resolve('./src/layouts/layout.js')
         }
       },
       {
         resolve: 'gatsby-source-filesystem',
         options: {
           name: 'pages',
-          path: path.resolve('src/pages')
+          path: path.resolve('src/page')
         }
       },
       {

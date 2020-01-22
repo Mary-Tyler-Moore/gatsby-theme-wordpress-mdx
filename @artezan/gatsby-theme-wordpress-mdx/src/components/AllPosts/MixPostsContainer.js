@@ -4,34 +4,61 @@ import { jsx } from 'theme-ui'
 
 import { Posts } from './Posts'
 
-export const MixPostsContainer = () => (
+export const MixPostsContainer = props => (
   <StaticQuery
     query={graphql`
       query mixQuery {
-        allMdx(
-          filter: { fields: { sourceName: { eq: "posts" } } }
-          sort: { fields: frontmatter___date, order: DESC }
-        ) {
-          nodes {
-            id
-            body
-            frontmatter {
-              date
-            }
-          }
-        }
-
-        allWordpressPost(sort: { fields: date, order: DESC }) {
+        allMdxWpPosts(sort: { fields: date, order: DESC }) {
           nodes {
             date
-            title
+            type
+            mdxData {
+              body
+              excerpt
+              timeToRead
+              wordCount {
+                words
+              }
+              fields {
+                slug
+              }
+              frontmatter {
+                title
+                tags
+                featureImage {
+                  childImageSharp {
+                    fluid(maxWidth: 600) {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
+                }
+              }
+            }
+            wpData {
+              excerpt
+              content
+              title
+              slug
+              tags {
+                name
+              }
+              featured_media {
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 600) {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
     `}
     render={data => {
-      const { allWordpressPost, allMdx } = data
-      return <Posts allWordpressPost={allWordpressPost} allMdx={allMdx}></Posts>
+      const { allMdxWpPosts } = data
+      return <Posts allMdxWpPosts={allMdxWpPosts} {...props}></Posts>
     }}
   />
 )
