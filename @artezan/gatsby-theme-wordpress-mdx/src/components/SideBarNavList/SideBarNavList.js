@@ -19,7 +19,7 @@ export const SideBarNavList = ({ links }) => {
   }
 
   return (
-    <Styled.ul
+    <Styled.div
       sx={{
         margin: 0,
         padding: 0,
@@ -28,11 +28,11 @@ export const SideBarNavList = ({ links }) => {
     >
       {links.map((link, index) => {
         const { slug, title, icon } = link
-
-        const isActive = slug === currentActive ? true : false
+        const isActive =
+          slug.replace('/', '') === currentActive.replace('/', '')
 
         return (
-          <Styled.li
+          <Styled.div
             key={index}
             sx={{
               listStyle: 'none',
@@ -69,9 +69,9 @@ export const SideBarNavList = ({ links }) => {
                 isActive={isActive ? true : false}
               />
             </Link>
-          </Styled.li>
+          </Styled.div>
         )
       })}
-    </Styled.ul>
+    </Styled.div>
   )
 }

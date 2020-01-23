@@ -6,6 +6,7 @@ import { SideBarNavList } from '../SideBarNavList'
 import { SideBarContext } from '../SideBarContext'
 
 import { ToggleSwitch } from '../ToggleSwitch'
+import { Link } from 'gatsby'
 
 export const SideBar = ({ config, links }) => {
   const { state } = React.useContext(SideBarContext)
@@ -48,6 +49,7 @@ export const SideBar = ({ config, links }) => {
             pl: 4
           }}
         >
+          {/* <Link to={'/'}>Logo</Link> */}
           {/* <Logo /> */}
         </Styled.div>
         <Styled.div

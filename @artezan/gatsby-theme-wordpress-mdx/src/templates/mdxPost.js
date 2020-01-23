@@ -11,6 +11,7 @@ import { Seo } from '../components/Seo'
 import { formatDate, colorRange } from '../helpers'
 import { Content } from '../components/Content'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
+import { ButtonIcon } from '../components/ButtonIcon'
 
 export const MdxPostTemplate = ({
   content,
@@ -32,89 +33,97 @@ export const MdxPostTemplate = ({
   )
 
   return (
-    <article
-      sx={{
-        mb: 7
-      }}
-    >
-      <Seo
-        title={`${site.siteMetadata.title} | ${title}`}
-        description={excerpt}
-        keywords={tags || []}
-        siteURL={site.siteMetadata.siteURL}
-        image={
-          featuredImage
-            ? featuredImage.childImageSharp.fluid.src.replace('/', '')
-            : ''
-        }
-      />
-      {featuredImage && (
+    <>
+      <article
+        sx={{
+          mb: 7
+        }}
+      >
+        <Seo
+          title={`${site.siteMetadata.title} | ${title}`}
+          description={excerpt}
+          keywords={tags || []}
+          siteURL={site.siteMetadata.siteURL}
+          image={
+            featuredImage
+              ? featuredImage.childImageSharp.fluid.src.replace('/', '')
+              : ''
+          }
+        />
+        {featuredImage && (
+          <Styled.div
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              width: '100%',
+              overflow: 'hidden',
+              mb: 4
+            }}
+          >
+            <Img
+              fluid={featuredImage.childImageSharp.fluid}
+              alt={title}
+              style={{
+                display: 'block',
+                width: '100%',
+                height: '100%'
+              }}
+            />
+          </Styled.div>
+        )}
         <Styled.div
           sx={{
-            display: 'flex',
-            alignItems: 'center',
-            width: '100%',
-            overflow: 'hidden',
-            mb: 4
+            fontSize: 2,
+            fontFamily: 'body',
+            color: 'secondary',
+            mb: 3
           }}
         >
-          <Img
-            fluid={featuredImage.childImageSharp.fluid}
-            alt={title}
-            style={{
-              display: 'block',
-              width: '100%',
-              height: '100%'
-            }}
-          />
+          <Styled.h1>{title}</Styled.h1>
+          {formatDate(date)} {author && <> | By {author} </>}
         </Styled.div>
-      )}
-      <Styled.div
-        sx={{
-          fontSize: 2,
-          fontFamily: 'body',
-          color: 'secondary',
-          mb: 3
-        }}
-      >
-        <Styled.h1>{title}</Styled.h1>
-        {formatDate(date)} {author && <> | By {author} </>}
-      </Styled.div>
-      {tags && (
-        <ul
+        {tags && (
+          <ul
+            sx={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              p: 0,
+              mt: 4,
+              mb: 3,
+              '> :nth-of-type(n)': {
+                mr: 2
+              }
+            }}
+          >
+            {tags.map((tag, index) => (
+              <Tag key={index} color={colorScale[index]}>
+                {tag}
+              </Tag>
+            ))}
+          </ul>
+        )}
+
+        <Styled.div
           sx={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            p: 0,
-            mt: 4,
-            mb: 3,
-            '> :nth-of-type(n)': {
-              mr: 2
-            }
+            mb: 4,
+            color: 'textMuted',
+            fontSize: 1,
+            fontFamily: 'body',
+            textAlign: 'right'
           }}
         >
-          {tags.map((tag, index) => (
-            <Tag key={index} color={colorScale[index]}>
-              {tag}
-            </Tag>
-          ))}
-        </ul>
-      )}
+          {`${timeToRead} min read / ${wordCount} words`}
+        </Styled.div>
 
-      <Styled.div
-        sx={{
-          mb: 4,
-          color: 'textMuted',
-          fontSize: 1,
-          fontFamily: 'body',
-          textAlign: 'right'
-        }}
-      >
-        {`${timeToRead} min read / ${wordCount} words`}
-      </Styled.div>
-
-      <MDXRenderer>{content}</MDXRenderer>
-    </article>
+        <MDXRenderer>{content}</MDXRenderer>
+      </article>
+      <span>
+        <ButtonIcon
+          onClick={() => window.history.back()}
+          iconPath="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"
+        />
+      </span>
+    </>
   )
 }
 

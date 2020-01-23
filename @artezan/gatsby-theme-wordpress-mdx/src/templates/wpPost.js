@@ -10,6 +10,7 @@ import { Seo } from '../components/Seo'
 
 import { formatDate, colorRange } from '../helpers'
 import { Content } from '../components/Content'
+import { ButtonIcon } from '../components/ButtonIcon'
 
 export const WpPostTemplate = ({
   content,
@@ -29,91 +30,102 @@ export const WpPostTemplate = ({
     tags ? tags.length : 2
   )
   return (
-    <article
-      sx={{
-        mb: 7
-      }}
-    >
-      <Seo
-        title={`${site.siteMetadata.title} | ${title}`}
-        description={excerpt}
-        keywords={tags || []}
-        siteURL={site.siteMetadata.siteURL}
-        image={
-          featuredImage && featuredImage.localFile
-            ? featuredImage.localFile.childImageSharp.fluid.src.replace('/', '')
-            : ''
-        }
-      />
-      {featuredImage && featuredImage.localFile && (
-        <Styled.div
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            width: '100%',
-            overflow: 'hidden',
-            mb: 4
-          }}
-        >
-          <Img
-            fluid={featuredImage.localFile.childImageSharp.fluid}
-            alt={title}
-            style={{
-              display: 'block',
-              width: '100%',
-              height: '100%'
-            }}
-          />
-        </Styled.div>
-      )}
-      <Styled.div
+    <>
+      <article
         sx={{
-          fontSize: 2,
-          fontFamily: 'body',
-          color: 'secondary',
-          mb: 3
+          mb: 7
         }}
       >
-        <Styled.h1>{title}</Styled.h1>
-        {formatDate(date)}{' '}
-        {author && (
-          <>
-            {' '}
-            <span>| By {author} </span>{' '}
-          </>
+        <Seo
+          title={`${site.siteMetadata.title} | ${title}`}
+          description={excerpt}
+          keywords={tags || []}
+          siteURL={site.siteMetadata.siteURL}
+          image={
+            featuredImage && featuredImage.localFile
+              ? featuredImage.localFile.childImageSharp.fluid.src.replace(
+                  '/',
+                  ''
+                )
+              : ''
+          }
+        />
+        {featuredImage && featuredImage.localFile && (
+          <Styled.div
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              width: '100%',
+              overflow: 'hidden',
+              mb: 4
+            }}
+          >
+            <Img
+              fluid={featuredImage.localFile.childImageSharp.fluid}
+              alt={title}
+              style={{
+                display: 'block',
+                width: '100%',
+                height: '100%'
+              }}
+            />
+          </Styled.div>
         )}
-      </Styled.div>
-      {tags && (
-        <ul
+        <Styled.div
           sx={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            p: 0,
-            mt: 4,
-            mb: 3,
-            '> :nth-of-type(n)': {
-              mr: 2
-            }
+            fontSize: 2,
+            fontFamily: 'body',
+            color: 'secondary',
+            mb: 3
           }}
         >
-          {tags.map(({ name }, index) => (
-            <Tag key={index} color={colorScale[index]}>
-              {name}
-            </Tag>
-          ))}
-        </ul>
-      )}
+          <Styled.h1>{title}</Styled.h1>
+          {formatDate(date)}{' '}
+          {author && (
+            <>
+              {' '}
+              <span>| By {author} </span>{' '}
+            </>
+          )}
+        </Styled.div>
+        {tags && (
+          <ul
+            sx={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              p: 0,
+              mt: 4,
+              mb: 3,
+              '> :nth-of-type(n)': {
+                mr: 2
+              }
+            }}
+          >
+            {tags.map(({ name }, index) => (
+              <Tag key={index} color={colorScale[index]}>
+                {name}
+              </Tag>
+            ))}
+          </ul>
+        )}
 
-      <Styled.div
-        sx={css({
-          img: {
-            width: '100%  !important',
-            height: 'auto  !important'
-          }
-        })}
-        dangerouslySetInnerHTML={{ __html: content }}
-      />
-    </article>
+        <Styled.div
+          sx={css({
+            img: {
+              width: '100%  !important',
+              height: 'auto  !important'
+            }
+          })}
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
+      </article>
+      <span>
+        <ButtonIcon
+          onClick={() => window.history.back()}
+          iconPath="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"
+        />
+      </span>
+    </>
   )
 }
 

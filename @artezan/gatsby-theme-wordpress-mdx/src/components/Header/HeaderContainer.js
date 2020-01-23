@@ -17,16 +17,24 @@ export const HeaderContainer = ({ children }) => (
             }
           }
         }
-        allMdx(filter: { fields: { sourceName: { eq: "pages" } } }) {
+        allMdxWpPages(sort: { order: ASC, fields: title }) {
           edges {
             node {
-              fileAbsolutePath
-              fields {
+              type
+              id
+              title
+              wpData {
                 slug
-              }
-              frontmatter {
                 title
-                icon
+              }
+              mdxData {
+                fields {
+                  slug
+                }
+                frontmatter {
+                  title
+                  icon
+                }
               }
             }
           }
@@ -35,15 +43,28 @@ export const HeaderContainer = ({ children }) => (
     `}
     render={data => {
       const { config } = data.site.siteMetadata
-      const links = data.allMdx.edges.map(item => {
-        return {
-          slug: item.node.fields.slug,
-          icon: item.node.frontmatter.icon,
-          title: item.node.frontmatter.title
+      const links = data.allMdxWpPages.edges.map(({ node: page }) => {
+        if (page.type === 'WP') {
+          const { wpData } = page
+          return {
+            slug: wpData.slug,
+            icon: null,
+            title: page.title
+          }
+        } else {
+          const { mdxData } = page
+          return {
+            slug: mdxData.fields.slug,
+            icon: mdxData.frontmatter.icon,
+            title: page.title
+          }
         }
       })
-
-      return <Header config={config} links={links}>{children}</Header>
+      return (
+        <Header config={config} links={links}>
+          {children}
+        </Header>
+      )
     }}
   />
 )

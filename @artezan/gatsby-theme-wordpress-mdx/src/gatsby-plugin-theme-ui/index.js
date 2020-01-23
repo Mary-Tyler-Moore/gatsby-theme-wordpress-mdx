@@ -105,7 +105,7 @@ export default {
 
   layout: {
     content: {
-      maxWidth: '1140px'
+      maxWidth: ['1140px']
     }
   },
 

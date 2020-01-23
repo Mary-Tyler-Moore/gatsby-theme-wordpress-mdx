@@ -6,10 +6,6 @@ import { Tag } from '../Tag'
 import { formatDate, colorRange } from '../../helpers'
 import { css } from '@emotion/core'
 
-const onImgLoad = ev => {
-  console.log('load', ev)
-}
-
 const CardImg = ({ fluid, title }) => (
   <Img
     imgStyle={{

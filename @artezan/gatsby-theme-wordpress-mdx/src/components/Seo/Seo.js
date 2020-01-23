@@ -18,6 +18,9 @@ export const Seo = ({
 
   return (
     <Helmet
+      htmlAttributes={{
+        lang
+      }}
       title={title}
       titleTemplate={formatTitleTemplate}
       link={[
@@ -35,7 +38,6 @@ export const Seo = ({
         }
       ]}
     >
-      <html lang={lang} />
       <meta name="description" content={description} />
       <meta name="image" content={`${siteURL}/${image}`} />
       <meta name="image:alt" content={description} />

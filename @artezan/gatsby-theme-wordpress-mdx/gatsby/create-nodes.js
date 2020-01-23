@@ -70,9 +70,10 @@ function CreateNodeWPPage({
   const { createNode, createParentChildLink } = actions
   const parent = getNode(node.parent)
   createNode({
-    type: 'WPP',
+    type: 'WP',
     date: node.date,
     parent: node.id,
+    title: node.title,
     children: [],
     wpData: { ...node },
     id: createNodeId(`pa-${node.id}`),
@@ -82,4 +83,41 @@ function CreateNodeWPPage({
     }
   })
 }
-module.exports = { CreateNodeWP, CreateNodeMDX, CreateNodeWPPage }
+/**
+ * Create MDX pages in MdxWpPosts
+ */
+function CreateNodeMDXPage({
+  node,
+  createNodeId,
+  createContentDigest,
+  actions,
+  getNode
+}) {
+  const { createNode, createParentChildLink } = actions
+  const parent = getNode(node.parent)
+  if (parent.sourceInstanceName === 'pages') {
+    createNode({
+      type: 'MDX',
+      date: node.frontmatter.date || [],
+      parent: node.id,
+      title: node.frontmatter.title || '',
+      children: [],
+      mdxData: { ...node },
+      id: createNodeId(`pa-${node.id}`),
+      internal: {
+        type: 'MdxWpPages',
+        contentDigest: createContentDigest(node)
+      }
+    })
+    createParentChildLink({
+      parent: parent,
+      child: node
+    })
+  }
+}
+module.exports = {
+  CreateNodeWP,
+  CreateNodeMDX,
+  CreateNodeWPPage,
+  CreateNodeMDXPage
+}

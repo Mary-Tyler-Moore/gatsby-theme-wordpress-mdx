@@ -6,6 +6,8 @@ import { ToggleSwitch } from '../ToggleSwitch'
 import { ButtonIcon } from '../ButtonIcon'
 import { SideBarContext } from '../SideBarContext'
 import { SideBarNavList } from '../SideBarNavList'
+import { SideBarContainer } from '../SideBar/SideBarContainer'
+import { Link } from 'gatsby'
 
 export const Header = ({ config, links }) => {
   const { sideBarWidth, headerHeight, showToggle } = config
@@ -37,11 +39,8 @@ export const Header = ({ config, links }) => {
           minHeight: `${headerHeight}px`
         }}
       >
-        <Styled.div
-          sx={{
-            display: ['flex', 'flex', 'flex', 'none']
-          }}
-        >
+        <Styled.div>
+          <Link to={'/'}>Logo</Link>
           {/* <Logo /> */}
         </Styled.div>
 

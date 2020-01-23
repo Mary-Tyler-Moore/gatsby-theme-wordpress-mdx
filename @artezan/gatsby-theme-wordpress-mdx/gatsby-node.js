@@ -7,7 +7,8 @@ const { CreateTypeMdxWpPosts } = require(`./gatsby/create-types`)
 const {
   CreateNodeWP,
   CreateNodeMDX,
-  CreateNodeWPPage
+  CreateNodeWPPage,
+  CreateNodeMDXPage
 } = require(`./gatsby/create-nodes`)
 
 exports.createSchemaCustomization = ({ actions }) => {
@@ -43,6 +44,14 @@ exports.onCreateNode = ({
       })
       // create mdx post with WP
       CreateNodeMDX({
+        node,
+        getNode,
+        createNodeId,
+        createContentDigest,
+        actions
+      })
+      // create mdx page with WP
+      CreateNodeMDXPage({
         node,
         getNode,
         createNodeId,

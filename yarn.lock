@@ -5499,6 +5499,14 @@ gatsby-core-utils@^1.0.25:
     ci-info "2.0.0"
     node-object-hash "^2.0.0"
 
+gatsby-core-utils@^1.0.26:
+  version "1.0.26"
+  resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-1.0.26.tgz#e1cbdfad498d58d677d9d74f21a1ede661b49d6f"
+  integrity sha512-NPflmXmyTcg3x2mp6cqp/51QeAHRKepfbf0X4erDsnVlewFJuGTe+25ZJvWkkwU2g1cPAxuwzlPe0jOL92iU4A==
+  dependencies:
+    ci-info "2.0.0"
+    node-object-hash "^2.0.0"
+
 gatsby-graphiql-explorer@^0.2.31:
   version "0.2.31"
   resolved "https://registry.yarnpkg.com/gatsby-graphiql-explorer/-/gatsby-graphiql-explorer-0.2.31.tgz#cb7a7ed2749085a28612f11ef37a35de54809710"
@@ -5543,6 +5551,16 @@ gatsby-plugin-layout@^1.1.16:
   resolved "https://registry.yarnpkg.com/gatsby-plugin-layout/-/gatsby-plugin-layout-1.1.16.tgz#423833c271eaeb996cacb8ac567912173b9fbb3f"
   dependencies:
     "@babel/runtime" "^7.7.4"
+
+gatsby-plugin-manifest@^2.2.3:
+  version "2.2.38"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-manifest/-/gatsby-plugin-manifest-2.2.38.tgz#365d679dc815b301b38eff7893f35c62036f5e2b"
+  integrity sha512-3DXS7FTK4qJnKLAZ/8x2/UfSOVCwTykg/kp0erYbdJ2roxPvUd3paCqGm3WfzbfwKVGVBpZgMaYO/whNw/bdbQ==
+  dependencies:
+    "@babel/runtime" "^7.7.6"
+    gatsby-core-utils "^1.0.26"
+    semver "^5.7.1"
+    sharp "^0.23.4"
 
 gatsby-plugin-mdx@^1.0.64:
   version "1.0.64"
@@ -5738,10 +5756,10 @@ gatsby-transformer-sharp@^2.3.9:
     semver "^5.7.1"
     sharp "^0.23.4"
 
-gatsby-wordpress-inline-images@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/gatsby-wordpress-inline-images/-/gatsby-wordpress-inline-images-1.2.0.tgz#181666d660733df596a3feb6e24287a7fc10028a"
-  integrity sha512-iUi9qE60FZLCHJe7pQmOGLVcs7nEPVJZnAbWGau7rWRl54IX7iXUbL0c2iq0S5UHshxhJd1wzPSv54rSQSIJ7A==
+gatsby-wordpress-inline-images@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/gatsby-wordpress-inline-images/-/gatsby-wordpress-inline-images-1.2.1.tgz#d990c7a9c347ec457d065f432117e489a249efc0"
+  integrity sha512-G+nkGiVh82iRkbqeqXvk68GNTqmFfKnYLL7+QnzVBOLtwYXWY/3Dwi4lErf0UvmjwL3BXfV9LPsMnVP/Wxl4wg==
   dependencies:
     "@babel/runtime" "^7.0.0"
     cheerio "^1.0.0-rc.2"

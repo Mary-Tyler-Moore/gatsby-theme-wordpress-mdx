@@ -5,6 +5,7 @@ function CreateWpDataSchema(actions) {
       type MdxWpPagesWpData implements Node {
         wordpress_id: Int
         date: Date
+        title: String
         guid: String
         modified: Date
         slug: String

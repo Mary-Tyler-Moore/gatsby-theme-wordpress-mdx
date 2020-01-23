@@ -33,7 +33,7 @@ export const SideBarNavItem = ({ icon, title, isActive }) => (
       }
     }}
   >
-    <Icon iconPath={icon} />
+    {/* {icon && <Icon iconPath={icon} />} */}
     {title}
   </Styled.div>
 )

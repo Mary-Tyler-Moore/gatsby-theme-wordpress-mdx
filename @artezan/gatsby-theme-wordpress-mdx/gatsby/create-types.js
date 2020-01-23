@@ -12,7 +12,6 @@ function CreateTypeMdxWpPosts(actions, schema) {
         rawBody: { type: 'String' },
         html: { type: 'String' },
         frontmatter: { type: 'MdxFrontmatter' },
-        frontmatter: { type: 'MdxFrontmatter' },
         fields: { type: 'MdxFields' },
         author: { type: 'String' },
         body: {
@@ -143,6 +142,79 @@ function CreateTypeMdxWpPosts(actions, schema) {
       interfaces: [`Node`]
     })
   )
+  // resolvers for MDX Page data
+  createTypes(
+    schema.buildObjectType({
+      name: `MdxWpPagesMdxData`,
+      fields: {
+        rawBody: { type: 'String' },
+        html: { type: 'String' },
+        frontmatter: { type: 'MdxFrontmatter' },
+        fields: { type: 'MdxFields' },
+        author: { type: 'String' },
+        body: {
+          type: 'String!',
+          resolve(source, args, context, info) {
+            const type = info.schema.getType(`Mdx`)
+            const root = context.nodeModel.findRootNodeAncestor(source)
+            const mdxNode = context.nodeModel.getNodeById({
+              id: source.id
+            })
+            const resolver = type.getFields()['body'].resolve
+            return resolver(mdxNode, {}, context, {
+              fieldName: 'body'
+            })
+          }
+        },
+        timeToRead: {
+          type: 'Int',
+          resolve(source, args, context, info) {
+            const type = info.schema.getType(`Mdx`)
+            const mdxNode = context.nodeModel.getNodeById({
+              id: source.id
+            })
+            const resolver = type.getFields()['timeToRead'].resolve
+            return resolver(mdxNode, {}, context, {
+              fieldName: 'timeToRead'
+            })
+          }
+        },
+        wordCount: {
+          type: 'MdxWordCount',
+          resolve(source, args, context, info) {
+            const type = info.schema.getType(`Mdx`)
+            const mdxNode = context.nodeModel.getNodeById({
+              id: source.id
+            })
+            const resolver = type.getFields()['wordCount'].resolve
+            return resolver(mdxNode, {}, context, {
+              fieldName: 'wordCount'
+            })
+          }
+        },
+        excerpt: {
+          type: 'String!',
+          resolve: async (source, args, context, info) => {
+            const type = info.schema.getType(`Mdx`)
+            const mdxNode = context.nodeModel.getNodeById({
+              id: source.id
+            })
+            const resolver = type.getFields()['excerpt'].resolve
+            const excerpt = await resolver(
+              mdxNode,
+              { pruneLength: 140 },
+              context,
+              {
+                fieldName: 'excerpt'
+              }
+            )
+            return excerpt
+          }
+        }
+      },
+      interfaces: [`Node`]
+    })
+  )
   // types for MdxWpPosts
   createTypes(
     schema.buildObjectType({
@@ -152,6 +224,7 @@ function CreateTypeMdxWpPosts(actions, schema) {
         type: { type: 'String' },
         postId: { type: 'String' },
         date: { type: 'Date' },
+        title: { type: 'String' },
         wpData: { type: 'MdxWpPostsWpData' },
         mdxData: { type: 'MdxWpPostsMdxData' }
       },
@@ -168,8 +241,9 @@ function CreateTypeMdxWpPosts(actions, schema) {
         id: { type: `ID!` },
         type: { type: 'String' },
         date: { type: 'Date' },
-        wpData: { type: 'MdxWpPagesWpData' }
-        // mdxData: { type: 'MdxWpPagesMdxData' }
+        title: { type: 'String' },
+        wpData: { type: 'MdxWpPagesWpData' },
+        mdxData: { type: 'MdxWpPagesMdxData' }
       },
       interfaces: [`Node`]
     })

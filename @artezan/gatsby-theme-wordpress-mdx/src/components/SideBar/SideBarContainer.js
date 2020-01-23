@@ -17,20 +17,24 @@ export const SideBarContainer = () => (
             }
           }
         }
-        allMdx(
-          # todo !!
-          filter: { fileAbsolutePath: { regex: "//src/page//" } }
-          sort: { order: ASC, fields: [fields___slug] }
-        ) {
+        allMdxWpPages(sort: { order: ASC, fields: title }) {
           edges {
             node {
-              fileAbsolutePath
-              fields {
+              type
+              id
+              title
+              wpData {
                 slug
-              }
-              frontmatter {
                 title
-                icon
+              }
+              mdxData {
+                fields {
+                  slug
+                }
+                frontmatter {
+                  title
+                  icon
+                }
               }
             }
           }
@@ -39,14 +43,23 @@ export const SideBarContainer = () => (
     `}
     render={data => {
       const { config } = data.site.siteMetadata
-      let links = data.allMdx.edges.map(item => {
-        return {
-          slug: item.node.fields.slug,
-          icon: item.node.frontmatter.icon,
-          title: item.node.frontmatter.title
+      const links = data.allMdxWpPages.edges.map(({ node: page }) => {
+        if (page.type === 'WP') {
+          const { wpData } = page
+          return {
+            slug: wpData.slug,
+            icon: null,
+            title: page.title
+          }
+        } else {
+          const { mdxData } = page
+          return {
+            slug: mdxData.fields.slug,
+            icon: mdxData.frontmatter.icon,
+            title: page.title
+          }
         }
       })
-
       return (
         <Styled.div
           sx={{

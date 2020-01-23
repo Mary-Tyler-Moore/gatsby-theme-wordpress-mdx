@@ -9,7 +9,7 @@ module.exports = {
     title: 'WP MDX',
     description: 'It is a WP with MDX blog ',
     keywords: ['GatsbyJs', 'React', 'theme-ui'],
-    siteURL: '',
+    siteURL: 'http://artezan-blog.netlify.com',
     siteImage: '',
     config: {
       headerHeight: 64,
@@ -23,6 +23,18 @@ module.exports = {
   plugins: [
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `gatsby-starter-default`,
+        short_name: `starter`,
+        start_url: `/`,
+        background_color: `#a92aeb`,
+        theme_color: `#a92aeb`,
+        display: `minimal-ui`,
+        icon: `static/favicon.ico` // This path is relative to the root of the site.
+      }
+    },
     {
       resolve: 'gatsby-source-wordpress',
       options: {

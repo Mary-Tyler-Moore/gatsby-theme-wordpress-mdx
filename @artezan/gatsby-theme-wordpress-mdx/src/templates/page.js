@@ -6,12 +6,14 @@ import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { Seo } from '../components/Seo'
 import { ContentContainer } from '../components/Content'
+import { ButtonIcon } from '../components/ButtonIcon'
 
 const Page = ({ data: { mdx, site } }) => {
   const context = useThemeUI()
 
   const {
-    frontmatter: { featuredImage }
+    frontmatter: { featureImage, tags, title },
+    excerpt
   } = mdx
 
   return (
@@ -21,24 +23,30 @@ const Page = ({ data: { mdx, site } }) => {
           mb: 7
         }}
       >
-        {/*  <Seo
+        <Seo
           title={`${site.siteMetadata.title} | ${title}`}
-          description={excerpt}
+          description={excerpt || ''}
           keywords={tags || []}
           siteURL={site.siteMetadata.siteURL}
           image={
-            featuredImage && featuredImage.localFile
-              ? featuredImage.localFile.childImageSharp.fluid.src.replace(
+            featureImage && featureImage.localFile
+              ? featureImage.localFile.childImageSharp.fluid.src.replace(
                   '/',
                   ''
                 )
               : ''
           }
-        /> */}
+        />
         <Styled.div>
           <MDXRenderer>{mdx.body}</MDXRenderer>
         </Styled.div>
       </article>
+      <span>
+        <ButtonIcon
+          onClick={() => window.history.back()}
+          iconPath="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"
+        />
+      </span>
     </ContentContainer>
   )
 }
@@ -54,7 +62,10 @@ export const contentQuery = graphql`
     mdx(id: { eq: $id }) {
       id
       body
+      excerpt
       frontmatter {
+        tags
+        title
         featureImage {
           childImageSharp {
             fluid(maxWidth: 800) {

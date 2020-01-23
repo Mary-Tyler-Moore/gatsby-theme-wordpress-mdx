@@ -20,6 +20,17 @@ module.exports = async function CreatePagesWp(actions, graphql, reporter) {
           }
         }
       }
+      allMdxWpPages(filter: { type: { eq: "WP" } }) {
+        edges {
+          node {
+            id
+            wpData {
+              slug
+              id
+            }
+          }
+        }
+      }
     }
   `)
   if (result.errors) {
@@ -35,7 +46,7 @@ module.exports = async function CreatePagesWp(actions, graphql, reporter) {
       : allPosts
 
   const postTemplate = path.join(__dirname, `../src/templates/wpPost.js`)
-  const blogTemplate = path.join(__dirname, `../src/templates/blog.js`)
+  const pageTemplate = path.join(__dirname, `../src/templates/wpPage.js`)
 
   posts.forEach(({ node: post }) => {
     // Create the Gatsby page for this WordPress post
@@ -47,12 +58,23 @@ module.exports = async function CreatePagesWp(actions, graphql, reporter) {
       }
     })
   })
-  // Create a paginated blog, e.g., /, /page/2, /page/3
-  /*  paginate({
-    createPage,
-    items: posts,
-    itemsPerPage: 10,
-    pathPrefix: ({ pageNumber }) => (pageNumber === 0 ? `/blog` : `/blog/page`),
-    component: blogTemplate
-  }) */
+
+  // In production builds, filter for only published pages.
+  const allPages = result.data.allMdxWpPages.edges
+  const pages =
+    process.env.NODE_ENV === 'production'
+      ? getOnlyPublished(allPages)
+      : allPages
+
+  // Create a page
+  pages.forEach(({ node: page }) => {
+    // Create the Gatsby page for this WordPress page
+    createPage({
+      path: `/${page.wpData.slug}/`,
+      component: pageTemplate,
+      context: {
+        id: page.id
+      }
+    })
+  })
 }

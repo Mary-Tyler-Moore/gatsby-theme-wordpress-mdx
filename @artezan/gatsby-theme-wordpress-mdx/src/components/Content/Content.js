@@ -33,7 +33,16 @@ export const Content = ({ children, config = {}, bg }) => {
         transition: theme => theme.sideBarTranstion
       }}
     >
-      <Container p={4}>{children}</Container>
+      <Container
+        sx={
+          {
+            /* maxWidth: ['540px', '540px', '540px', '1024px'] */
+          }
+        }
+        p={4}
+      >
+        {children}
+      </Container>
     </Styled.div>
   )
 }
