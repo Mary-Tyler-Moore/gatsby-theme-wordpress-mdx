@@ -48,7 +48,15 @@ module.exports = async function CreatePagesWp(actions, graphql, reporter) {
   const postTemplate = path.join(__dirname, `../src/templates/wpPost.js`)
   const pageTemplate = path.join(__dirname, `../src/templates/wpPage.js`)
 
+  // In production builds, filter for only published pages.
+  const allPages = result.data.allMdxWpPages.edges
+  const pages =
+    process.env.NODE_ENV === 'production'
+      ? getOnlyPublished(allPages)
+      : allPages
+
   posts.forEach(({ node: post }) => {
+    // console.log('HERE POST', allPages)
     // Create the Gatsby page for this WordPress post
     createPage({
       path: `/${post.wpData.slug}/`,
@@ -59,15 +67,9 @@ module.exports = async function CreatePagesWp(actions, graphql, reporter) {
     })
   })
 
-  // In production builds, filter for only published pages.
-  const allPages = result.data.allMdxWpPages.edges
-  const pages =
-    process.env.NODE_ENV === 'production'
-      ? getOnlyPublished(allPages)
-      : allPages
-
   // Create a page
-  pages.forEach(({ node: page }) => {
+  allPages.forEach(({ node: page }) => {
+    // console.log('HERE PAGE')
     // Create the Gatsby page for this WordPress page
     createPage({
       path: `/${page.wpData.slug}/`,
