@@ -57,12 +57,7 @@ export const pageQuery = graphql`
       }
     }
     mdxWpPages(id: { eq: $id }) {
-      date
       wpData {
-        excerpt
-        slug
-        id
-        status
         title
         content
         excerpt
