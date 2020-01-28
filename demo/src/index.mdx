@@ -12,8 +12,25 @@ import General from './sections/general/general.mdx'
 import LastedPosts from './sections/lastedPosts/lastedPosts.mdx'
 import Header from './sections/header/header.mdx'
 
-<Parallax pages={3}>
-  <Parallax.Layer offset={0} speed={0.5}>
-    <span>Layers can contain anything</span>
-  </Parallax.Layer>
-</Parallax>
+<Header {...props} />
+<ContainerWrapper
+        sx={{
+          background: theme => theme.colors['backgroundFeatures']
+        }}
+      >
+    <FeaturesWrapper >
+        <Feature1 {...props} />
+        <Feature2 {...props} />
+        <Feature3 {...props} />
+    </FeaturesWrapper>
+</ContainerWrapper>
+<ContainerWrapper> 
+    <About {...props} />
+</ContainerWrapper>
+<ContainerWrapper> 
+    <General {...props} />
+</ContainerWrapper>
+<ContainerWrapper> 
+    <LastedPosts  />
+</ContainerWrapper>
+<Footer {...props} />

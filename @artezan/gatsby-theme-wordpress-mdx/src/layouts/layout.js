@@ -14,9 +14,10 @@ import { formatPathname } from '../helpers'
 import { MDXProvider } from '@mdx-js/react'
 import * as Shortcodes from '../Shortcodes'
 // import Parallax from 'react-rellax'
-import Parallax from 'react-springy-parallax'
+// import Parallax from 'react-springy-parallax'
+import { ParallaxLayer, Parallax } from 'react-spring/renderprops-addons.cjs'
 
-const shortcodes = { ...Shortcodes, Parallax }
+const shortcodes = { ...Shortcodes }
 
 const Layout = ({ children }) => {
   const context = useThemeUI()
@@ -48,6 +49,7 @@ const Layout = ({ children }) => {
             margin: 0,
             padding: 0,
             position: 'relative',
+            // overflowY: 'hidden',
             // minHeight: '100%',
             minWidth: '320px',
             bg: 'background'
@@ -58,6 +60,10 @@ const Layout = ({ children }) => {
       <Styled.div
         sx={{
           margin: '0',
+          /* display: 'flex',
+          flexDirection: 'column',
+          minHeight: '100vh', */
+          // config
           backgroundColor: theme => theme.colors.background
         }}
       >
@@ -79,8 +85,8 @@ const Layout = ({ children }) => {
                   <HeaderContainer />
                   <SideBarContainer />
                   <LightPanel />
-                  <MDXProvider components={shortcodes}>{children}</MDXProvider>
 
+                  <MDXProvider components={shortcodes}>{children}</MDXProvider>
                   {/* <Transition pathname={pathname}>{children}</Transition> */}
                 </>
               )

@@ -15,6 +15,7 @@ import {
   MdxPostsContainer
 } from '../components/AllPosts'
 import { LastedPosts } from '../components/sections/LastedPosts/LastedPosts'
+import { ParallaxLayer, Parallax } from 'react-spring/renderprops-addons.cjs'
 
 const convertArrayToObject = array =>
   array.reduce(
@@ -28,7 +29,9 @@ const Landing = ({
       body,
       frontmatter: { sections: sectionsOrder }
     },
-    site: { siteMetadata },
+    site: {
+      siteMetadata: { config }
+    },
     allImageSharp: { nodes: images }
   }
 }) => {
@@ -120,9 +123,8 @@ const Landing = ({
       </main>
     </div>
   ) */
-  console.log('BODY', body)
   return (
-    <Styled.div>
+    <Styled.div sx={{}}>
       <MDXRenderer imagesFluid={imagesFluid} context={context}>
         {body}
       </MDXRenderer>
@@ -138,6 +140,7 @@ export const contentQuery = graphql`
         siteURL
         config {
           multipleBackground
+          headerHeight
         }
       }
     }
