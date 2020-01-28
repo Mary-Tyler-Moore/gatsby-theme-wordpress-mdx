@@ -1,26 +1,10 @@
 /** @jsx jsx */
-import { StaticQuery, graphql } from 'gatsby'
 import { jsx } from 'theme-ui'
 
 import { Content } from './Content'
+import { useSiteMetadata } from '../../Hooks'
 
-export const ContentContainer = ({ children }) => (
-  <StaticQuery
-    query={graphql`
-      query contentQuery {
-        site {
-          siteMetadata {
-            config {
-              sideBarWidth
-            }
-          }
-        }
-      }
-    `}
-    render={data => {
-      const { config } = data.site.siteMetadata
-
-      return <Content config={config}>{children}</Content>
-    }}
-  />
-)
+export const ContentContainer = ({ children }) => {
+  const { config } = useSiteMetadata()
+  return <Content config={config}>{children}</Content>
+}

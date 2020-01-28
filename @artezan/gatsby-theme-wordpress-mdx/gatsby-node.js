@@ -19,15 +19,11 @@ exports.sourceNodes = ({ actions, schema }) => {
   CreateTypeMdxWpPosts(actions, schema)
 }
 
-exports.onCreateNode = ({
-  node,
-  actions,
-  getNode,
-  createNodeId,
-  createContentDigest
-}) => {
+exports.onCreateNode = (
+  { node, actions, getNode, createNodeId, createContentDigest },
+  pluginOptions
+) => {
   const { createNodeField } = actions
-
   if (node.internal.type === 'Mdx') {
     const parent = getNode(node.parent)
     const value = createFilePath({ node, getNode })
@@ -87,12 +83,15 @@ exports.createPages = async (
   { page, graphql, actions, reporter },
   pluginOptions
 ) => {
-  const { sourceWordpress = false, sourceMdxPosts = false } = pluginOptions
-  if (sourceWordpress) {
+  const {
+    sourceWordpress: { sourcePost = false, sourcePage = false },
+    sourceMdxPosts = false
+  } = pluginOptions
+  if (sourcePost || sourcePage) {
     /**
      * Create each page and post from WP
      */
-    await CreatePagesWp(actions, graphql, reporter)
+    await CreatePagesWp(actions, graphql, reporter, sourcePost, sourcePage)
   }
 
   /**

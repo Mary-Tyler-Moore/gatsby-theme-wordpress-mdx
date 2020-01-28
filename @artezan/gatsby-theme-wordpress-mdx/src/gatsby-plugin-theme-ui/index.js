@@ -86,6 +86,7 @@ export default {
       }
     }
   },
+  // custom styles
 
   breakpoints: ['576px', '768px', '992px', '1200px'],
 
@@ -107,6 +108,9 @@ export default {
     content: {
       maxWidth: ['1140px']
     }
+  },
+  logo: {
+    width: '3.5em'
   },
 
   styles: {

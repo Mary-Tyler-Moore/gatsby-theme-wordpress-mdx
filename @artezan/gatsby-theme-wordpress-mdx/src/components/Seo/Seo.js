@@ -23,7 +23,7 @@ export const Seo = ({
       }}
       title={title}
       titleTemplate={formatTitleTemplate}
-      link={[
+      /* link={[
         {
           rel: 'icon',
           type: 'image/png',
@@ -36,7 +36,7 @@ export const Seo = ({
           sizes: '32x32',
           href: `${siteURL}/images/favicon-32x32.png`
         }
-      ]}
+      ]} */
     >
       <meta name="description" content={description} />
       <meta name="image" content={`${siteURL}/${image}`} />

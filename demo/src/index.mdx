@@ -1,7 +1,19 @@
 ---
 title: index
 layout: landing
-sections: ['header', 'features', 'about', 'general', 'lastedPosts', 'footer']
 ---
 
-# Index
+import Footer from './sections/footer/footer.mdx'
+import Feature1 from './sections/features/feature1.mdx'
+import Feature2 from './sections/features/feature2.mdx'
+import Feature3 from './sections/features/feature3.mdx'
+import About from './sections/about/about.mdx'
+import General from './sections/general/general.mdx'
+import LastedPosts from './sections/lastedPosts/lastedPosts.mdx'
+import Header from './sections/header/header.mdx'
+
+<Parallax pages={3}>
+  <Parallax.Layer offset={0} speed={0.5}>
+    <span>Layers can contain anything</span>
+  </Parallax.Layer>
+</Parallax>

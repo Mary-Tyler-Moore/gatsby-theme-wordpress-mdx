@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import React, { useState, useEffect } from 'react'
-import { jsx, Flex, Box, Styled } from 'theme-ui'
+import { jsx, Flex, Box, Styled, useThemeUI } from 'theme-ui'
 import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { HeaderComponent } from '../components/sections/Header/HeaderComponent'
 import { FeatureComponent } from '../components/sections/Features/FeatureComponent'
-import { Content } from '../components/Content'
+import { Content, ContentContainer } from '../components/Content'
 import { AboutSection } from '../components/sections/About/AboutSection'
 import { FooterSection } from '../components/sections/Footer/FooterSection'
 import { GeneralSection } from '../components/sections/GeneralSection/GeneralSection'
@@ -16,22 +16,29 @@ import {
 } from '../components/AllPosts'
 import { LastedPosts } from '../components/sections/LastedPosts/LastedPosts'
 
+const convertArrayToObject = array =>
+  array.reduce(
+    (obj, item) => ((obj[item.fluid.originalName] = item.fluid), obj),
+    {}
+  )
+
 const Landing = ({
   data: {
-    allMdx: { nodes: sections },
     mdx: {
+      body,
       frontmatter: { sections: sectionsOrder }
     },
     site: { siteMetadata },
-    sitePlugin: { pluginOptions }
+    allImageSharp: { nodes: images }
   }
 }) => {
-  const { sourceWordpress, sourceMdxPosts } = pluginOptions
-  const isMix = sourceWordpress && sourceMdxPosts
-  const isWp = sourceWordpress && !sourceMdxPosts
-  const isMdx = !sourceWordpress && sourceMdxPosts
+  let imagesFluid = {}
+  if (images && images.length) {
+    imagesFluid = convertArrayToObject(images)
+  }
+  const context = useThemeUI()
   // Sort sections
-  const [sortSecctions, setSortSecctions] = useState([])
+  /* const [sortSecctions, setSortSecctions] = useState([])
   useEffect(() => {
     setSortSecctions(
       sections
@@ -56,8 +63,8 @@ const Landing = ({
           )
         })
     )
-  }, [sections])
-  return (
+  }, [sections]) */
+  /*  return (
     <div
       sx={{
         display: 'flex',
@@ -112,17 +119,19 @@ const Landing = ({
         ))}
       </main>
     </div>
+  ) */
+  console.log('BODY', body)
+  return (
+    <Styled.div>
+      <MDXRenderer imagesFluid={imagesFluid} context={context}>
+        {body}
+      </MDXRenderer>
+    </Styled.div>
   )
 }
 
 export const contentQuery = graphql`
   query landingQuery($id: String) {
-    sitePlugin(name: { eq: "gatsby-theme-wordpress-mdx" }) {
-      pluginOptions {
-        sourceWordpress
-        sourceMdxPosts
-      }
-    }
     site {
       siteMetadata {
         title
@@ -134,58 +143,16 @@ export const contentQuery = graphql`
     }
     mdx(id: { eq: $id }) {
       id
+      body
       frontmatter {
         sections
       }
     }
-    # TODO Custom
-    allMdx(filter: { fields: { sourceName: { eq: "sections" } } }) {
+    allImageSharp {
       nodes {
-        id
-        body
-        excerpt
-        fields {
-          sourceName
-        }
-        frontmatter {
-          section
-          parallaxBodySpeed
-          featureOrder
-          tags
-          title
-          date
-          headerImages {
-            publicURL
-            name
-            childImageSharp {
-              fluid(maxWidth: 800) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-          featureImage {
-            childImageSharp {
-              fluid(maxWidth: 800) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
-            }
-          }
-          aboutImage {
-            childImageSharp {
-              fluid(maxWidth: 800) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
-            }
-          }
-          images {
-            publicURL
-            name
-            childImageSharp {
-              fluid(maxWidth: 800) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
-            }
-          }
+        fluid(maxWidth: 800) {
+          originalName
+          ...GatsbyImageSharpFluid
         }
       }
     }

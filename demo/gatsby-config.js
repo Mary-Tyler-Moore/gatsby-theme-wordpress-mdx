@@ -10,15 +10,7 @@ module.exports = {
     description: 'It is a WP with MDX blog ',
     keywords: ['GatsbyJs', 'React', 'theme-ui'],
     siteURL: 'http://artezan-blog.netlify.com',
-    siteImage: '',
-    config: {
-      headerHeight: 64,
-      sideBarWidth: 240,
-      showToggle: true,
-      multipleBackground: true,
-      twitter: 'artezanc',
-      github: 'artezanc'
-    }
+    siteImage: ''
   },
   plugins: [
     'gatsby-transformer-sharp',
@@ -78,9 +70,18 @@ module.exports = {
       resolve: 'gatsby-theme-wordpress-mdx',
       options: {
         // Requiered
-        sourceWordpress: true,
-        // Requered
-        sourceMdxPosts: true
+        sourceWordpress: {
+          sourcePost: true,
+          sourcePage: true
+        },
+        // Requiered
+        sourceMdxPosts: true,
+        // config optional
+        headerHeight: 64,
+        sideBarWidth: 240,
+        showToggle: true,
+        multipleBackground: true,
+        logo: `src/images/logo.svg` // This path is relative to the root of the site.
       }
     }
   ]

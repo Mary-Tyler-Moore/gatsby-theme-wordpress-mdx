@@ -11,8 +11,11 @@ export default {
         backgroundFeatures: 'linear-gradient(#f0f4fc, #d0dcf6)',
         backgroundAbout: 'linear-gradient(#d0dcf6, #9eb7ec)',
         backgroundFooter: 'linear-gradient(#9eb7ec, #d0dcf6)',
-        backgroundPost: 'linear-gradient(#d0dcf6, #f0f4fc)',
+        backgroundPost: 'linear-gradient(#d0dcf6, #f0f4fc)'
       }
     }
+  },
+  logo: {
+    width: '4em'
   }
 }

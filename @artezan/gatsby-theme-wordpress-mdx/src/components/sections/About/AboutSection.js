@@ -4,8 +4,7 @@ import { jsx, Styled, useThemeUI, Flex, Box } from 'theme-ui'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import Img from 'gatsby-image'
 
-export const AboutSection = ({ body, frontmatter: { aboutImage } }) => {
-  let aboutImageFluid = aboutImage.childImageSharp.fluid
+export const AboutSection = ({ aboutImageFluid, children }) => {
   return (
     <>
       <Flex
@@ -41,7 +40,7 @@ export const AboutSection = ({ body, frontmatter: { aboutImage } }) => {
               marginTop: '10%'
             }}
           >
-            <MDXRenderer>{body}</MDXRenderer>
+            {children}
           </Styled.div>
         </Box>
       </Flex>

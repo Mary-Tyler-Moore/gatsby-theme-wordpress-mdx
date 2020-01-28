@@ -4,7 +4,13 @@ const { paginate } = require('gatsby-awesome-pagination')
 const getOnlyPublished = edges =>
   edges.filter(({ node }) => node.wpData.status === 'publish')
 
-module.exports = async function CreatePagesWp(actions, graphql, reporter) {
+module.exports = async function CreatePagesWp(
+  actions,
+  graphql,
+  reporter,
+  isPage,
+  isPost
+) {
   const { createPage } = actions
   const result = await graphql(`
     {
@@ -25,6 +31,7 @@ module.exports = async function CreatePagesWp(actions, graphql, reporter) {
           node {
             id
             wpData {
+              status
               slug
               id
             }
@@ -55,28 +62,29 @@ module.exports = async function CreatePagesWp(actions, graphql, reporter) {
       ? getOnlyPublished(allPages)
       : allPages
 
-  posts.forEach(({ node: post }) => {
-    // console.log('HERE POST', allPages)
-    // Create the Gatsby page for this WordPress post
-    createPage({
-      path: `/${post.wpData.slug}/`,
-      component: postTemplate,
-      context: {
-        id: post.id
-      }
+  if (isPost) {
+    allPosts.forEach(({ node: post }) => {
+      // Create the Gatsby page for this WordPress post
+      createPage({
+        path: `/${post.wpData.slug}/`,
+        component: postTemplate,
+        context: {
+          id: post.id
+        }
+      })
     })
-  })
-
-  // Create a page
-  allPages.forEach(({ node: page }) => {
-    // console.log('HERE PAGE')
-    // Create the Gatsby page for this WordPress page
-    createPage({
-      path: `/${page.wpData.slug}/`,
-      component: pageTemplate,
-      context: {
-        id: page.id
-      }
+  }
+  if (isPage) {
+    // Create a page
+    allPages.forEach(({ node: page }) => {
+      // Create the Gatsby page for this WordPress page
+      createPage({
+        path: `/${page.wpData.slug}/`,
+        component: pageTemplate,
+        context: {
+          id: page.id
+        }
+      })
     })
-  })
+  }
 }

@@ -3,10 +3,12 @@ section: footer
 ---
 
 <Div sx={{
-  display: "flex",
-  justifyContent: "space-around",
-  flexWrap: 'wrap',
-  flexDirection: ['column', 'column', 'row']
+marginTop: '2%',
+display: "flex",
+justifyContent: "space-around",
+flexWrap: 'wrap',
+flexDirection: ['column', 'column', 'row'],
+px: 4
 }}>
 
 <div>
@@ -47,5 +49,5 @@ sx={{
     p: 3
   }}
 >
-  © 2020 Jane Doe
+  © {new Date().getFullYear()} Jane Doe
 </Div>

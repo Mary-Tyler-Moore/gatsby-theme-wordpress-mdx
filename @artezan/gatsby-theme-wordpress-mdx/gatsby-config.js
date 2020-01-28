@@ -9,13 +9,14 @@ module.exports = options => {
       keywords: [],
       siteURL: '',
       siteImage: '',
+      twitter: '',
+      github: '',
       config: {
-        headerHeight: 64,
-        sideBarWidth: 240,
-        showToggle: true,
-        multipleBackground: true,
-        twitter: '',
-        github: ''
+        headerHeight: options.headerHeight || 64,
+        sideBarWidth: options.sideBarWidth || 240,
+        showToggle: !!options.showToggle,
+        multipleBackground: !!options.multipleBackground,
+        logo: options.logo || ''
       }
     },
     plugins: [
@@ -52,9 +53,13 @@ module.exports = options => {
       }
     ]
   }
-  const { sourceWordpress = false, sourceMdxPosts = false } = options
+  const {
+    sourceWordpress: { sourcePost = false, sourcePage = false },
+    sourceMdxPosts = false,
+    logo
+  } = options
   // Push another plugins dynamicly here
-  if (sourceWordpress) {
+  if (sourcePost || sourcePage) {
     console.log('Get data from Wordpress ...')
     // config.plugins.push()
   }
@@ -64,6 +69,15 @@ module.exports = options => {
       options: {
         name: 'posts',
         path: path.resolve('src/posts')
+      }
+    })
+  }
+  if (logo) {
+    config.plugins.push({
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'logo',
+        path: path.resolve(logo)
       }
     })
   }

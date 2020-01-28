@@ -8,11 +8,11 @@ import { SideBarContext } from '../SideBarContext'
 import { SideBarNavList } from '../SideBarNavList'
 import { SideBarContainer } from '../SideBar/SideBarContainer'
 import { Link } from 'gatsby'
+import ImageDynamic from '../ImgDynamic/ImgDynamic'
 
 export const Header = ({ config, links }) => {
-  const { sideBarWidth, headerHeight, showToggle } = config
+  const { headerHeight, showToggle, logo } = config
   const { state, dispatch } = React.useContext(SideBarContext)
-
   return (
     <header
       sx={{
@@ -39,8 +39,20 @@ export const Header = ({ config, links }) => {
           minHeight: `${headerHeight}px`
         }}
       >
-        <Styled.div>
-          <Link to={'/'}>Logo</Link>
+        <Styled.div id="logo">
+          <Link to={'/'}>
+            {logo === '' ? (
+              `Logo`
+            ) : (
+              <ImageDynamic
+                sx={{
+                  width: theme => theme.logo.width
+                }}
+                name={'logo'}
+                filename={logo}
+              />
+            )}
+          </Link>
           {/* <Logo /> */}
         </Styled.div>
 
