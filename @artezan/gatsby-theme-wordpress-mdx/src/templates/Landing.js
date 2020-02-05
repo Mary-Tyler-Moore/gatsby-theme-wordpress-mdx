@@ -3,19 +3,6 @@ import React, { useState, useEffect } from 'react'
 import { jsx, Flex, Box, Styled, useThemeUI } from 'theme-ui'
 import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
-import { HeaderComponent } from '../components/sections/Header/HeaderComponent'
-import { FeatureComponent } from '../components/sections/Features/FeatureComponent'
-import { Content, ContentContainer } from '../components/Content'
-import { AboutSection } from '../components/sections/About/AboutSection'
-import { FooterSection } from '../components/sections/Footer/FooterSection'
-import { GeneralSection } from '../components/sections/GeneralSection/GeneralSection'
-import {
-  MixPostsContainer,
-  WpPostsContainer,
-  MdxPostsContainer
-} from '../components/AllPosts'
-import { LastedPosts } from '../components/sections/LastedPosts/LastedPosts'
-import { ParallaxLayer, Parallax } from 'react-spring/renderprops-addons.cjs'
 
 const convertArrayToObject = array =>
   array.reduce(
