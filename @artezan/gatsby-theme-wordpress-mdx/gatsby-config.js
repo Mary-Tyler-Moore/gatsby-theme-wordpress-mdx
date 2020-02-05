@@ -24,6 +24,7 @@ module.exports = options => {
       'gatsby-plugin-mdx',
       'gatsby-plugin-sharp',
       'gatsby-transformer-sharp',
+      'gatsby-theme-style-guide',
       {
         resolve: 'gatsby-plugin-layout',
         options: {
