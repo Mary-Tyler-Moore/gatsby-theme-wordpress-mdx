@@ -1,7 +1,12 @@
 ---
 aboutImage: about-image1.jpg
 ---
-
+<ContainerWrapper
+  sx={{
+    background: theme => theme.colors['backgroundAbout']
+  }}
+>
+<ScrollAnimation animateIn="fadeIn" animateOnce>
 <AboutLayout aboutImageFluid={props.imagesFluid['about-image1.jpg']}>
   <h2>Title About</h2>
   <p>
@@ -11,4 +16,7 @@ aboutImage: about-image1.jpg
     scrambled it to make a type specimen book. It has survived not only five
     centuries, but also the lea
   </p>
-</AboutLayout>
+</AboutLayout> 
+</ScrollAnimation>
+
+</ContainerWrapper>

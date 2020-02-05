@@ -9,15 +9,13 @@ import { Seo } from '../components/Seo'
 import { HeaderContainer } from '../components/Header/HeaderContainer'
 import { SideBarContainer } from '../components/SideBar'
 import { LightPanel } from '../components/LightPanel'
-import { ContentContainer } from '../components/Content'
 import { formatPathname } from '../helpers'
 import { MDXProvider } from '@mdx-js/react'
 import * as Shortcodes from '../Shortcodes'
-// import Parallax from 'react-rellax'
-// import Parallax from 'react-springy-parallax'
-import { ParallaxLayer, Parallax } from 'react-spring/renderprops-addons.cjs'
+import 'animate.css/animate.min.css'
+import ScrollAnimation from 'react-animate-on-scroll'
 
-const shortcodes = { ...Shortcodes }
+const shortcodes = { ...Shortcodes, ScrollAnimation }
 
 const Layout = ({ children }) => {
   const context = useThemeUI()
@@ -30,6 +28,9 @@ const Layout = ({ children }) => {
           keywords
           siteURL
           siteImage
+          config {
+            headerHeight
+          }
         }
       }
     }
@@ -39,61 +40,74 @@ const Layout = ({ children }) => {
     description,
     keywords,
     siteURL,
-    siteImage
+    siteImage,
+    config
   } = data.site.siteMetadata
+  const styles = {
+    fontFamily: 'Menlo-Regular, Menlo, monospace',
+    fontSize: 14,
+    lineHeight: '10px',
+    color: 'white',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
   return (
     <>
       <Global
         styles={css({
+          '*': {
+            boxSizing: `inherit`,
+            '&:before': {
+              boxSizing: `inherit`
+            },
+            '&:after': {
+              boxSizing: `inherit`
+            }
+          },
           body: {
             margin: 0,
             padding: 0,
-            position: 'relative',
-            // overflowY: 'hidden',
-            // minHeight: '100%',
-            minWidth: '320px',
+            boxSizing: `border-box`,
+            textRendering: `optimizeLegibility`,
+            WebkitFontSmoothing: `antialiased`,
+            MozOsxFontSmoothing: `grayscale`,
             bg: 'background'
+          },
+          '::selection': {
+            backgroundColor: `primary`,
+            color: `white`
           }
         })}
       />
+      <SideBarProvider>
+        <Location>
+          {({ location }) => {
+            const { pathname } = location
 
-      <Styled.div
-        sx={{
-          margin: '0',
-          /* display: 'flex',
-          flexDirection: 'column',
-          minHeight: '100vh', */
-          // config
-          backgroundColor: theme => theme.colors.background
-        }}
-      >
-        <SideBarProvider>
-          <Location>
-            {({ location }) => {
-              const { pathname } = location
-
-              return (
-                <>
-                  <Seo
-                    title={title}
-                    titleTemplate={formatPathname(pathname)}
-                    description={description}
-                    keywords={keywords}
-                    siteURL={siteURL}
-                    image={siteImage}
-                  />
-                  <HeaderContainer />
-                  <SideBarContainer />
-                  <LightPanel />
-
+            return (
+              <>
+                <Seo
+                  title={title}
+                  titleTemplate={formatPathname(pathname)}
+                  description={description}
+                  keywords={keywords}
+                  siteURL={siteURL}
+                  image={siteImage}
+                />
+                <HeaderContainer />
+                <SideBarContainer />
+                <LightPanel />
+                <Styled.div sx={{ mt: `${config.headerHeight}px` }}>
                   <MDXProvider components={shortcodes}>{children}</MDXProvider>
-                  {/* <Transition pathname={pathname}>{children}</Transition> */}
-                </>
-              )
-            }}
-          </Location>
-        </SideBarProvider>
-      </Styled.div>
+                </Styled.div>
+
+                {/* <Transition pathname={pathname}>{children}</Transition> */}
+              </>
+            )
+          }}
+        </Location>
+      </SideBarProvider>
     </>
   )
 }

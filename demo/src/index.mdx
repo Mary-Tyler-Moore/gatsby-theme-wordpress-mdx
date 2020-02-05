@@ -4,33 +4,15 @@ layout: landing
 ---
 
 import Footer from './sections/footer/footer.mdx'
-import Feature1 from './sections/features/feature1.mdx'
-import Feature2 from './sections/features/feature2.mdx'
-import Feature3 from './sections/features/feature3.mdx'
+import Features from './sections/features/features.mdx'
 import About from './sections/about/about.mdx'
 import General from './sections/general/general.mdx'
 import LastedPosts from './sections/lastedPosts/lastedPosts.mdx'
 import Header from './sections/header/header.mdx'
 
 <Header {...props} />
-<ContainerWrapper
-        sx={{
-          background: theme => theme.colors['backgroundFeatures']
-        }}
-      >
-    <FeaturesWrapper >
-        <Feature1 {...props} />
-        <Feature2 {...props} />
-        <Feature3 {...props} />
-    </FeaturesWrapper>
-</ContainerWrapper>
-<ContainerWrapper> 
-    <About {...props} />
-</ContainerWrapper>
-<ContainerWrapper> 
-    <General {...props} />
-</ContainerWrapper>
-<ContainerWrapper> 
-    <LastedPosts  />
-</ContainerWrapper>
+<Features {...props} />
+<About {...props} />
+<General {...props} />
+<LastedPosts />
 <Footer {...props} />

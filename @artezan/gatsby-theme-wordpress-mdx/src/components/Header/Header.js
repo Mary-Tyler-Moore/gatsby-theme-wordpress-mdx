@@ -59,7 +59,6 @@ export const Header = ({ config, links }) => {
 
           <Styled.div
             sx={{
-              pr: 4,
               display: [
                 `${state.isNavOpen ? 'none' : 'flex'}`,
                 `${state.isNavOpen ? 'none' : 'flex'}`,
@@ -77,7 +76,6 @@ export const Header = ({ config, links }) => {
           </Styled.div>
           <Styled.div
             sx={{
-              pr: 5,
               display: ['none', 'none', 'none', 'flex'],
               justifyContent: 'flex-end',
               flexBasis: '100%',
@@ -93,7 +91,7 @@ export const Header = ({ config, links }) => {
           </Styled.div>
         </Styled.div>
       </header>
-      <Styled.div sx={{ height: `${headerHeight}px` }}></Styled.div>
+      {/* <Styled.div sx={{ height: `${headerHeight}px` }}></Styled.div> */}
     </>
   )
 }

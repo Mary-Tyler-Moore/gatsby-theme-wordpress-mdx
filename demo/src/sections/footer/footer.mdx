@@ -3,7 +3,10 @@ section: footer
 ---
 
 <Div sx={{
-marginTop: '2%',
+background: theme => theme.colors['backgroundFooter']
+}} >
+<ScrollAnimation animateIn="fadeIn"  >
+<Div sx={{
 display: "flex",
 justifyContent: "space-around",
 flexWrap: 'wrap',
@@ -50,4 +53,6 @@ sx={{
   }}
 >
   © {new Date().getFullYear()} Jane Doe
+</Div>
+</ScrollAnimation>
 </Div>

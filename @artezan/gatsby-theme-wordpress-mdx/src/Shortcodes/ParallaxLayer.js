@@ -1,7 +1,7 @@
 /** @jsx jsx */
-import { jsx } from 'theme-ui'
+import { jsx, css } from 'theme-ui'
 import { ParallaxLayer } from 'react-spring/renderprops-addons.cjs'
 
-export const ParallaxPage = ({ sx, ...rest }) => {
-  return <ParallaxLayer sx={sx} {...rest} />
+export const ParallaxPage = ({ style, ...rest }) => {
+  return <ParallaxLayer css={css({ ...style })} {...rest} />
 }

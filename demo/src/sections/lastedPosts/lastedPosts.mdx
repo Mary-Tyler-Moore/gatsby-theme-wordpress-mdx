@@ -2,11 +2,15 @@
 section: lastedPosts
 ---
 
-<!--
-numOfPosts
-lastedFirst
- -->
+<ContainerWrapper
+  sx={{
+    background: theme => theme.colors['backgroundPost']
+  }}
+>
+<ScrollAnimation animateIn="fadeIn"  >
+
 
 ## Lasted Posts
-
-<AllPosts numOfPosts={4}  />
+<AllPosts numOfPosts={4} />
+</ScrollAnimation>
+</ContainerWrapper>

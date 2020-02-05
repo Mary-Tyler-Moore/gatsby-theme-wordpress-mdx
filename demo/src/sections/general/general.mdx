@@ -2,38 +2,47 @@
 images: [general1.jpg]
 ---
 
-<Div
+<ContainerWrapper
   sx={{
-    display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    padding: ['0', '0', '24px']
+    background: theme => theme.colors['backgroundGeneral']
   }}
 >
+<ScrollAnimation animateIn="fadeInRight" >
+
   <Div
     sx={{
-      marginTop: '3%'
-    }}
-  >
-    <h3>General Section</h3>
-    <p> Example of generic section with IMG </p>
-  </Div>
-  <Div
-    sx={{
-      width: '100%',
       display: 'flex',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      flexWrap: 'wrap',
+      padding: ['0', '0', '24px']
     }}
   >
-    <ImgGatsby
-      fluid={props.imagesFluid['general1.jpg']}
+    <Div
+      sx={{
+        marginTop: '3%'
+      }}
+    >
+      <h3>General Section</h3>
+      <p> Example of generic section with IMG </p>
+    </Div>
+    <Div
       sx={{
         width: '100%',
-        maxWidth: '300px',
-        borderRadius: '20px',
-        height: 'auto',
-        boxShadow: theme => theme.colors.shadowCard
+        display: 'flex',
+        justifyContent: 'center'
       }}
-    />
+    >
+      <ImgGatsby
+        fluid={props.imagesFluid['general1.jpg']}
+        sx={{
+          width: '100%',
+          maxWidth: '300px',
+          borderRadius: '20px',
+          height: 'auto',
+          boxShadow: theme => theme.colors.shadowCard
+        }}
+      />
+    </Div>
   </Div>
-</Div>
+  </ScrollAnimation>
+</ContainerWrapper>

@@ -55,12 +55,6 @@ export default {
 
     surface: '#1a1832',
     background: '#131127',
-    backgroundHeader: 'linear-gradient(#131127, #131127)',
-    backgroundFeatures: 'linear-gradient(#06050c, #131127)',
-    backgroundAbout: 'linear-gradient(#131127, #2e295e)',
-    backgroundGeneral: 'linear-gradient(#2e295e, #423b87)',
-    backgroundPost: 'linear-gradient(#423b87, #2e295e)',
-    backgroundFooter: 'linear-gradient(#2e295e, #06050c)',
     transparent: `rgba(0,0,0,0)`,
     shadowCard: '11px 7px 20px 12px rgb(0, 0, 0)',
 
@@ -121,7 +115,13 @@ export default {
       bg: 'background'
     },
     div: {
-      color: 'text'
+      // color: 'text',
+      color: 'textSecondary',
+      fontFamily: 'body',
+      fontSize: [2, 3],
+      fontWeight: 'body',
+      lineHeight: '28px',
+      wordBreak: 'break-word'
     },
 
     h1: {
