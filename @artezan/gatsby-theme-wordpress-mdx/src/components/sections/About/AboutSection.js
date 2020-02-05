@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import React from 'react'
-import { jsx, Styled, useThemeUI, Flex, Box } from 'theme-ui'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
+import { jsx, Styled, Flex, Box } from 'theme-ui'
 import Img from 'gatsby-image'
 
 export const AboutSection = ({ aboutImageFluid, children }) => {

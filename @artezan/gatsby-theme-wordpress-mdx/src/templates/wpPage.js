@@ -1,11 +1,8 @@
 /** @jsx jsx */
 import * as React from 'react'
-import { jsx, Styled, useThemeUI, css } from 'theme-ui'
+import { jsx, Styled, css } from 'theme-ui'
 import { graphql } from 'gatsby'
-import Img from 'gatsby-image'
-import { Tag } from '../components/Tag'
 import { Seo } from '../components/Seo'
-import { formatDate, colorRange } from '../helpers'
 import { ContentContainer } from '../components/Content'
 import { ButtonIcon } from '../components/ButtonIcon'
 import ScrollAnimation from 'react-animate-on-scroll'

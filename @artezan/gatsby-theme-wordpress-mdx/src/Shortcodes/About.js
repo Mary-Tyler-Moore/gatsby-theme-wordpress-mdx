@@ -1,5 +1,4 @@
 /** @jsx jsx */
-import { StaticQuery, graphql } from 'gatsby'
 import { jsx, Styled } from 'theme-ui'
 import { AboutSection } from '../components/sections/About/AboutSection'
 

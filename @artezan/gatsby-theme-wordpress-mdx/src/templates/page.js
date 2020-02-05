@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import * as React from 'react'
 
-import { jsx, Styled, useThemeUI } from 'theme-ui'
+import { jsx, Styled } from 'theme-ui'
 import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { Seo } from '../components/Seo'
@@ -10,8 +10,6 @@ import { ButtonIcon } from '../components/ButtonIcon'
 import ScrollAnimation from 'react-animate-on-scroll'
 
 const Page = ({ data: { mdx, site } }) => {
-  const context = useThemeUI()
-
   const {
     frontmatter: { featureImage, tags, title },
     excerpt

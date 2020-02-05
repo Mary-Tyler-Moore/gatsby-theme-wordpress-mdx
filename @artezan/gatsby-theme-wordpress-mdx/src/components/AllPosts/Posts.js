@@ -1,9 +1,7 @@
 /** @jsx jsx */
 import * as React from 'react'
 import { jsx } from 'theme-ui'
-import { Card } from '../Card'
 import { CardList } from '../CardList'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 export const Posts = ({
   allMdxWpPosts,

@@ -1,6 +1,5 @@
 /** @jsx jsx */
-import React, { useState, useEffect } from 'react'
-import { jsx, Flex, Box, Styled, useThemeUI } from 'theme-ui'
+import { jsx, Styled, useThemeUI } from 'theme-ui'
 import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 

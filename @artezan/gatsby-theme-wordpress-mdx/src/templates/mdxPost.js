@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import * as React from 'react'
-
-import { jsx, Styled, useThemeUI, css } from 'theme-ui'
+import { jsx, Styled, useThemeUI } from 'theme-ui'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 

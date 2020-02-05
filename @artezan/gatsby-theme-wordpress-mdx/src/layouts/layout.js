@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React from 'react'
 import { Global } from '@emotion/core'
-import { jsx, Styled, useThemeUI, css } from 'theme-ui'
+import { jsx, Styled, css } from 'theme-ui'
 import { graphql, useStaticQuery } from 'gatsby'
 import { Location } from '@reach/router'
 import { SideBarProvider } from '../components/SideBarContext'
@@ -18,7 +18,6 @@ import ScrollAnimation from 'react-animate-on-scroll'
 const shortcodes = { ...Shortcodes, ScrollAnimation }
 
 const Layout = ({ children }) => {
-  const context = useThemeUI()
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -43,15 +42,6 @@ const Layout = ({ children }) => {
     siteImage,
     config
   } = data.site.siteMetadata
-  const styles = {
-    fontFamily: 'Menlo-Regular, Menlo, monospace',
-    fontSize: 14,
-    lineHeight: '10px',
-    color: 'white',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
   return (
     <>
       <Global
