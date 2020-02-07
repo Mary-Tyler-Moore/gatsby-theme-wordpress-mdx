@@ -49,34 +49,62 @@ export default {
     text: '#ffffff',
     textSecondary: '#d2d2f1',
     textMuted: '#4e4c7a',
-
     primary: '#a92aeb',
     secondary: '#688ce0',
-
-    surface: '#1a1832',
+    muted: '#1a1832',
     background: '#131127',
     transparent: `rgba(0,0,0,0)`,
-    shadowCard: '11px 7px 20px 12px rgb(0, 0, 0)',
+    imgShadow: '11px 7px 20px 12px rgb(0, 0, 0)',
+    shadow: '',
+    backgroundNavBar: 'background',
+    backgroundSideBar: 'background',
+    activeTextBar: 'secondary',
+    textBar: 'primary',
 
     modes: {
       light: {
         text: '#0e3c61',
-        textSecondary: '#2b618c',
+        textSecondary: 'hsl(10, 20%, 20%)',
         textMuted: '#c7a9ce',
-
         primary: '#ff94c2',
         secondary: '#90caf9',
-
-        surface: '#fbf4fc',
-        background: '#fefbff',
-        backgroundHeader: 'linear-gradient(#fefbff, #fefbff)',
-        backgroundFeatures: 'linear-gradient(#ebafff, #f8e2ff)',
-        backgroundAbout: 'linear-gradient(#f8e2ff, #fefbff)',
-        backgroundGeneral: 'linear-gradient(#f8e2ff, #fefbff)',
-        backgroundFooter: 'linear-gradient(#fefbff, #f8e2ff)',
-        backgroundPost: 'linear-gradient(#f8e2ff, #ebafff)',
-
-        transparent: `rgba(0,0,0,0)`
+        muted: '#fbf4fc',
+        background: 'hsl(10, 10%, 98%)',
+        highlight: 'hsl(10, 40%, 90%)',
+        purple: 'hsl(250, 60%, 30%)',
+        gray: 'hsl(10, 20%, 50%)',
+        transparent: `rgba(0,0,0,0)`,
+        imgShadow: '4px 10px 20px 0px rgb(43,43,47)'
+      },
+      deep: {
+        text: 'hsl(210, 50%, 96%)',
+        textSecondary: 'hsl(210, 50%, 96%)',
+        background: 'hsl(230, 25%, 18%)',
+        primary: 'hsl(260, 100%, 80%)',
+        secondary: 'hsl(290, 100%, 80%)',
+        highlight: 'hsl(260, 20%, 40%)',
+        accent: 'hsl(290, 100%, 80%)',
+        muted: 'hsla(230, 20%, 0%, 20%)',
+        gray: 'hsl(210, 50%, 60%)'
+      },
+      swiss: {
+        text: '#207588',
+        // background: 'hsl(10, 10%, 98%)',
+        background: '#F7F7F7',
+        textSecondary: '#4b6f77',
+        textMuted: '#c7a9ce',
+        primary: '#AAD0D9',
+        secondary: '#EED5D1',
+        highlight: 'hsl(10, 40%, 90%)',
+        accent: '#E5B9B6⁣',
+        muted: '#ffffffba',
+        gray: 'hsl(10, 20%, 50%)',
+        shadow: '9px 8px 50px rgba(32,32,35,.1)',
+        imgShadow: '6px 7px 20px 0px rgb(43, 43, 47)',
+        backgroundNavBar: 'primary',
+        backgroundSideBar: 'primary',
+        activeTextBar: 'textSecondary',
+        textBar: 'text'
       }
     }
   },
@@ -91,11 +119,7 @@ export default {
   shadows: [
     '11px 7px 20px 12px rgb(0, 0, 0)',
     `0 0 0 2px`,
-    '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.20)',
-    '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.19)',
-    '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.19)',
-    '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.18)',
-    '0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.17)'
+    '27px 24px 50px rgba(32,32,35,.1)'
   ],
 
   layout: {
@@ -193,7 +217,7 @@ export default {
     },
 
     pre: {
-      backgroundColor: 'surface',
+      backgroundColor: 'muted',
       fontFamily: 'monospace',
       fontSize: 0,
       px: 3,

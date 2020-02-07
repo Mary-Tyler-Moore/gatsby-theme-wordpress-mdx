@@ -58,7 +58,7 @@ export const SideBarNavList = ({ links }) => {
                   outline: 'none',
                   div: {
                     boxShadow: theme =>
-                      `${theme.colors.shadowCard} ${theme.colors.textMuted}`
+                      `${theme.colors.imgShadow} ${theme.colors.textMuted}`
                   }
                 }
               }}

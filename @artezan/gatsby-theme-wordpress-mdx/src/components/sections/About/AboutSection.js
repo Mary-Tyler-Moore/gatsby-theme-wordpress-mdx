@@ -10,7 +10,8 @@ export const AboutSection = ({ aboutImageFluid, children }) => {
         sx={{
           flexWrap: 'wrap',
           flexDirection: 'row',
-          pb: [1, 1, 30]
+          pb: [1, 1, 30],
+          mt: [1, 1, 2]
         }}
       >
         <Box
@@ -25,7 +26,7 @@ export const AboutSection = ({ aboutImageFluid, children }) => {
             sx={{
               width: '80%',
               borderRadius: '5%',
-              boxShadow: theme => theme.colors.shadowCard
+              boxShadow: theme => theme.colors.imgShadow
             }}
           />
         </Box>

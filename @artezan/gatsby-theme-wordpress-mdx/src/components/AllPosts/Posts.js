@@ -2,13 +2,22 @@
 import * as React from 'react'
 import { jsx } from 'theme-ui'
 import { CardList } from '../CardList'
+import { SearchBar } from '../SearchBar/SearchBar'
 
 export const Posts = ({
   allMdxWpPosts,
   numOfPosts,
   lastedFirst = true,
+  selectedTag,
   ...rest
 }) => {
+  const [searchParam, setSearchParam] = React.useState([])
+
+  const handleSearchParam = filterValue => {
+    const values = filterValue.map(({ value }) => value)
+    setSearchParam(values)
+  }
+
   const { nodes: posts } = allMdxWpPosts
   // Map all posts
   let allPosts = posts.map(post => {
@@ -22,7 +31,8 @@ export const Posts = ({
         date,
         tags: mdxData.frontmatter.tags,
         title: mdxData.frontmatter.title,
-        featuredImage: mdxData.frontmatter.featureImage
+        featuredImage: mdxData.frontmatter.featureImage,
+        type: post.type
       }
     } else {
       return {
@@ -31,17 +41,65 @@ export const Posts = ({
         date,
         tags: wpData.tags,
         title: wpData.title,
-        featuredImage: wpData.featured_media
+        featuredImage: wpData.featured_media,
+        type: post.type
       }
     }
   })
+
+  //  sort by date
   if (!lastedFirst) {
     const c = new Date().getTime()
     allPosts.sort((a, b) => new Date(a.date || c) - new Date(b.date || c))
   }
+  // number of post
   if (numOfPosts) {
     allPosts = allPosts.slice(0, numOfPosts)
   }
+  // Get Tags
+  const listTags = allPosts.reduce((acc, current) => {
+    if (current.tags) {
+      if (current.type === 'MDX') {
+        const arrTags = current.tags.reduce((a, c) => {
+          if (!acc.some(ta => ta && ta.value === c)) {
+            a.push({ value: c })
+          }
+          return a
+        }, [])
+        acc = [...arrTags, ...acc]
+      } else {
+        const arrTags = current.tags.reduce((a, c) => {
+          if (!acc.some(ta => ta && ta.value === c.name)) {
+            a.push({ value: c.name })
+          }
+          return a
+        }, [])
+        acc = [...arrTags, ...acc]
+      }
+    }
+    return acc
+  }, [])
+  // filter
+  let filterPost = []
+  if (searchParam.length > 0) {
+    filterPost = allPosts.filter(({ tags, type }) => {
+      if (type === 'MDX') {
+        return tags && tags.some(tag => searchParam.includes(tag))
+      } else {
+        return tags && tags.some(({ name }) => searchParam.includes(name))
+      }
+    })
+  } else {
+    filterPost = allPosts
+  }
 
-  return <CardList {...rest} listItems={allPosts} />
+  return (
+    <>
+      <SearchBar
+        filterData={listTags}
+        onSearch={filterValue => handleSearchParam(filterValue)}
+      />
+      <CardList {...rest} listItems={filterPost} />
+    </>
+  )
 }

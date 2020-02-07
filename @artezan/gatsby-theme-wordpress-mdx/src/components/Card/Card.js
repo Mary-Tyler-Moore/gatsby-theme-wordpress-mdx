@@ -3,7 +3,7 @@ import * as React from 'react'
 import { jsx, Styled, useThemeUI } from 'theme-ui'
 import Img from 'gatsby-image'
 import { Tag } from '../Tag'
-import { formatDate, colorRange } from '../../helpers'
+import { formatDate, colorRange, getCurrentColors } from '../../helpers'
 import { css } from '@emotion/core'
 
 const CardImg = ({ fluid, title }) => (
@@ -31,10 +31,11 @@ export const Card = ({
   featuredImage
 }) => {
   const context = useThemeUI()
+
   const length = tags ? tags.length : []
   const colorScale = colorRange(
-    context.theme.colors.primary,
-    context.theme.colors.secondary,
+    getCurrentColors(context).primary,
+    getCurrentColors(context).secondary,
     length
   )
 
@@ -47,13 +48,14 @@ export const Card = ({
           flex: '1 1 auto',
           color: 'text',
           fontFamily: 'body',
-          backgroundColor: 'surface',
+          backgroundColor: 'muted',
           overflow: 'hidden',
           borderRadius: 1,
           transition: '.2s linear all',
           ':hover': {
             filter: 'brightness(105%)'
-          }
+          },
+          boxShadow: theme => theme.colors.shadow
         }}
       >
         {featuredImage &&

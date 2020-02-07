@@ -4,7 +4,7 @@ images: [general1.jpg]
 
 <ContainerWrapper
   sx={{
-    background: theme => theme.colors['backgroundGeneral']
+    background: theme => theme.colors['backgroundGeneral'] || theme.colors['background']
   }}
 >
 <ScrollAnimation animateIn="fadeInRight" >
@@ -39,7 +39,7 @@ images: [general1.jpg]
           maxWidth: '300px',
           borderRadius: '20px',
           height: 'auto',
-          boxShadow: theme => theme.colors.shadowCard
+          boxShadow: theme => theme.colors.imgShadow
         }}
       />
     </Div>

@@ -44,60 +44,59 @@ const Layout = ({ children }) => {
   } = data.site.siteMetadata
   return (
     <>
-      <Global
-        styles={css({
-          '*': {
-            boxSizing: `inherit`,
-            '&:before': {
-              boxSizing: `inherit`
+      <Styled.root>
+        <Global
+          styles={css({
+            '*': {
+              boxSizing: `inherit`,
+              '&:before': {
+                boxSizing: `inherit`
+              },
+              '&:after': {
+                boxSizing: `inherit`
+              }
             },
-            '&:after': {
-              boxSizing: `inherit`
+            body: {
+              margin: 0,
+              padding: 0,
+              boxSizing: `border-box`,
+              bg: 'background'
+            },
+            '::selection': {
+              backgroundColor: `primary`,
+              color: `white`
             }
-          },
-          body: {
-            margin: 0,
-            padding: 0,
-            boxSizing: `border-box`,
-            textRendering: `optimizeLegibility`,
-            WebkitFontSmoothing: `antialiased`,
-            MozOsxFontSmoothing: `grayscale`,
-            bg: 'background'
-          },
-          '::selection': {
-            backgroundColor: `primary`,
-            color: `white`
-          }
-        })}
-      />
-      <SideBarProvider>
-        <Location>
-          {({ location }) => {
-            const { pathname } = location
+          })}
+        />
+        <SideBarProvider>
+          <Location>
+            {({ location }) => {
+              const { pathname } = location
 
-            return (
-              <>
-                <Seo
-                  title={title}
-                  titleTemplate={formatPathname(pathname)}
-                  description={description}
-                  keywords={keywords}
-                  siteURL={siteURL}
-                  image={siteImage}
-                />
-                <HeaderContainer />
-                <SideBarContainer />
-                <LightPanel />
-                <Styled.div sx={{ mt: `${config.headerHeight}px` }}>
-                  <MDXProvider components={shortcodes}>{children}</MDXProvider>
-                </Styled.div>
-
-                {/* <Transition pathname={pathname}>{children}</Transition> */}
-              </>
-            )
-          }}
-        </Location>
-      </SideBarProvider>
+              return (
+                <>
+                  <Seo
+                    title={title}
+                    titleTemplate={formatPathname(pathname)}
+                    description={description}
+                    keywords={keywords}
+                    siteURL={siteURL}
+                    image={siteImage}
+                  />
+                  <HeaderContainer />
+                  <SideBarContainer />
+                  <LightPanel />
+                  <Styled.div sx={{ mt: `${config.headerHeight}px` }}>
+                    <MDXProvider components={shortcodes}>
+                      {children}
+                    </MDXProvider>
+                  </Styled.div>
+                </>
+              )
+            }}
+          </Location>
+        </SideBarProvider>
+      </Styled.root>
     </>
   )
 }

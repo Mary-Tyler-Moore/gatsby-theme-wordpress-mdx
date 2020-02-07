@@ -8,7 +8,7 @@ import Img from 'gatsby-image'
 import { Tag } from '../components/Tag'
 import { Seo } from '../components/Seo'
 import ScrollAnimation from 'react-animate-on-scroll'
-import { formatDate, colorRange } from '../helpers'
+import { formatDate, colorRange, getCurrentColors } from '../helpers'
 import { Content } from '../components/Content'
 import { ButtonIcon } from '../components/ButtonIcon'
 
@@ -25,8 +25,8 @@ export const WpPostTemplate = ({
 }) => {
   const context = useThemeUI()
   const colorScale = colorRange(
-    context.theme.colors.primary,
-    context.theme.colors.secondary,
+    getCurrentColors(context).primary,
+    getCurrentColors(context).secondary,
     tags ? tags.length : 2
   )
   return (

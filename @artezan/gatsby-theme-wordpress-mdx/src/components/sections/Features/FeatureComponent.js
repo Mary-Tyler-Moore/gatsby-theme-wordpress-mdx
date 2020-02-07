@@ -21,7 +21,7 @@ export const FeatureComponent = ({ featureImageFluid, children }) => {
             width: '80%',
             height: '200px',
             borderRadius: '15px',
-            boxShadow: theme => theme.colors.shadowCard
+            boxShadow: theme => theme.colors.imgShadow
           }}
         />
       </Styled.div>

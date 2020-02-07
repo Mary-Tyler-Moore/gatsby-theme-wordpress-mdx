@@ -5,8 +5,7 @@ import { jsx, Styled } from 'theme-ui'
 import { SideBarNavList } from '../SideBarNavList'
 import { SideBarContext } from '../SideBarContext'
 
-import { ToggleSwitch } from '../ToggleSwitch'
-import { Link } from 'gatsby'
+import { ButtonColor } from '../ButtonColor'
 
 export const SideBar = ({ config, links }) => {
   const { state } = React.useContext(SideBarContext)
@@ -17,10 +16,10 @@ export const SideBar = ({ config, links }) => {
       sx={{
         position: 'absolute',
         height: '100%',
-        backgroundColor: 'background',
+        backgroundColor: theme => theme.colors.backgroundSideBar,
         borderRightWidth: 0,
         borderRightStyle: 'solid',
-        borderRightColor: 'surface',
+        borderRightColor: 'muted',
         width: sideBarWidth,
         left: [
           `-${conditionalLeft}px`,
@@ -67,18 +66,13 @@ export const SideBar = ({ config, links }) => {
             sx={{
               pl: 3,
               pr: 3,
-              pt: 6,
               mb: 4,
               display: ['flex', 'flex', 'flex', 'none'],
               alignItems: 'center',
               justifyContent: 'space-between'
             }}
           >
-            {showToggle && (
-              <ToggleSwitch toggleSwitchName="sidebar-theme-toggle">
-                Toggle Theme
-              </ToggleSwitch>
-            )}
+            {showToggle && <ButtonColor />}
           </Styled.div>
         </Styled.div>
       </Styled.div>

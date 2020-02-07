@@ -12,12 +12,30 @@ export default {
     modes: {
       light: {
         ...baseTheme.colors.modes.light,
-        primary: '#2b62d6',
-        backgroundHeader: 'linear-gradient(#f0f4fc, #f0f4fc)',
-        backgroundFeatures: 'linear-gradient(#f0f4fc, #d0dcf6)',
-        backgroundAbout: 'linear-gradient(#d0dcf6, #9eb7ec)',
-        backgroundFooter: 'linear-gradient(#9eb7ec, #d0dcf6)',
-        backgroundPost: 'linear-gradient(#d0dcf6, #f0f4fc)'
+        backgroundHeader: 'hsl(10, 10%, 98%)',
+        backgroundFeatures: 'hsl(10, 10%, 98%)',
+        backgroundAbout: 'hsl(10, 10%, 98%)',
+        backgroundFooter: 'hsl(10, 10%, 98%)',
+        backgroundGeneral: 'hsl(10, 10%, 98%)',
+        backgroundPost: 'hsl(10, 10%, 98%)'
+      },
+      deep: {
+        ...baseTheme.colors.modes.deep,
+        backgroundHeader: 'hsl(230, 25%, 18%)',
+        backgroundFeatures: 'hsl(230, 25%, 18%)',
+        backgroundAbout: 'hsl(230, 25%, 18%)',
+        backgroundFooter: 'hsl(230, 25%, 18%)',
+        backgroundGeneral: 'hsl(230, 25%, 18%)',
+        backgroundPost: 'hsl(230, 25%, 18%)'
+      },
+      swiss: {
+        ...baseTheme.colors.modes.swiss,
+        backgroundHeader: '#F7F7F7',
+        backgroundFeatures: '#F7F7F7',
+        backgroundAbout: '#F7F7F7',
+        backgroundFooter: '#F7F7F7',
+        backgroundGeneral: '#F7F7F7',
+        backgroundPost: '#F7F7F7'
       }
     }
   },

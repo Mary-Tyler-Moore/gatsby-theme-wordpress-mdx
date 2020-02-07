@@ -9,6 +9,7 @@ import { SideBarNavList } from '../SideBarNavList'
 import { SideBarContainer } from '../SideBar/SideBarContainer'
 import { Link } from 'gatsby'
 import ImageDynamic from '../ImgDynamic/ImgDynamic'
+import { ButtonColor } from '../ButtonColor'
 
 export const Header = ({ config, links }) => {
   const { headerHeight, showToggle, logo } = config
@@ -22,9 +23,9 @@ export const Header = ({ config, links }) => {
           top: 0,
           borderBottomWidth: 0,
           borderBottomStyle: 'solid',
-          borderBottomColor: 'surface',
+          borderBottomColor: 'muted',
           color: 'text',
-          backgroundColor: 'background',
+          backgroundColor: theme => theme.colors.backgroundNavBar,
           opacity: 0.85,
           paddingLeft: [3, 4],
           paddingRight: [3, 4],
@@ -79,14 +80,16 @@ export const Header = ({ config, links }) => {
               display: ['none', 'none', 'none', 'flex'],
               justifyContent: 'flex-end',
               flexBasis: '100%',
-              mt: [0, 0, 3]
+              mt: [0, 0, 3],
+              alignItems: 'baseline'
             }}
           >
             {/* Pages */}
             <SideBarNavList links={links} />
             {/* Toggle */}
             {showToggle && (
-              <ToggleSwitch toggleSwitchName="header-theme-toggle" />
+              // <ToggleSwitch toggleSwitchName="header-theme-toggle" />
+              <ButtonColor />
             )}
           </Styled.div>
         </Styled.div>

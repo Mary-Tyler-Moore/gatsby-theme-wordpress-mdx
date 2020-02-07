@@ -6,10 +6,11 @@ import { Icon } from '../Icon'
 export const SideBarNavItem = ({ icon, title, isActive }) => (
   <Styled.div
     sx={{
-      color: isActive ? 'secondary' : 'primary',
+      color: theme =>
+        isActive ? theme.colors.activeTextBar : theme.colors.textBar,
       display: 'flex',
       alignItems: 'center',
-      backgroundColor: isActive ? 'surface' : 'transparent',
+      backgroundColor: isActive ? 'muted' : 'transparent',
       borderRadius: 2,
       textTransform: 'capitalize',
       pt: 3,
@@ -28,8 +29,8 @@ export const SideBarNavItem = ({ icon, title, isActive }) => (
       },
 
       ':hover': {
-        color: 'secondary',
-        backgroundColor: 'surface'
+        color: theme => theme.colors.activeTextBar,
+        backgroundColor: 'muted'
       }
     }}
   >
