@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React, { useState, useEffect } from 'react'
 import Downshift from 'downshift'
-import { Styled, jsx, css, Flex } from 'theme-ui'
+import { Styled, jsx } from 'theme-ui'
 
 import { ButtonIcon, ButtonIconSimple } from '../ButtonIcon'
 
