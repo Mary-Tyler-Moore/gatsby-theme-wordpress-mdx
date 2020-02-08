@@ -239,8 +239,6 @@ export const SearchBar = ({ filterData, onSearch }) => {
 }
 
 const stateReducer = (state, changes) => {
-  console.log('state', state)
-  console.log('changes', changes)
   switch (changes.type) {
     case Downshift.stateChangeTypes.keyDownEnter:
     case Downshift.stateChangeTypes.clickItem:
