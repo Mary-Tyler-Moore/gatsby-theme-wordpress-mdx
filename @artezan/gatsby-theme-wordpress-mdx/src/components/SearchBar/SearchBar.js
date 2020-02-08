@@ -26,8 +26,16 @@ export const SearchBar = ({ filterData, onSearch }) => {
     onSearch(selectedItems)
   }, [selectedItems])
 
+  const items = [
+    { value: 'apple' },
+    { value: 'pear' },
+    { value: 'orange' },
+    { value: 'grape' },
+    { value: 'banana' }
+  ]
+
   return (
-    <Styled.div>
+    <div>
       <Downshift
         stateReducer={stateReducer}
         onChange={handleCahange}
@@ -98,8 +106,8 @@ export const SearchBar = ({ filterData, onSearch }) => {
             </Styled.div>
 
             <div style={{ position: 'relative' }}>
-              <Styled.div
-                sx={{
+              <div
+                style={{
                   display: 'flex',
                   alignItems: 'center'
                 }}
@@ -158,7 +166,8 @@ export const SearchBar = ({ filterData, onSearch }) => {
                     }
                   />
                 )}
-              </Styled.div>
+              </div>
+
               <Styled.div
                 sx={{
                   backgroundColor: 'muted',
@@ -225,11 +234,13 @@ export const SearchBar = ({ filterData, onSearch }) => {
           </div>
         )}
       </Downshift>
-    </Styled.div>
+    </div>
   )
 }
 
 const stateReducer = (state, changes) => {
+  console.log('state', state)
+  console.log('changes', changes)
   switch (changes.type) {
     case Downshift.stateChangeTypes.keyDownEnter:
     case Downshift.stateChangeTypes.clickItem:

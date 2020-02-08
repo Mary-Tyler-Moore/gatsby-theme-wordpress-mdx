@@ -20,25 +20,20 @@ const commonStyles = {
 }
 
 export const Content = ({ children, config = {}, bg }) => {
-  const background = config.multipleBackground
-    ? { background: theme => theme.colors[bg] }
-    : { background: theme => theme.colors.background }
   return (
     <Styled.div
       sx={{
         zIndex: '2',
         position: 'relative',
-        ...background,
         overflow: 'hidden',
         transition: theme => theme.sideBarTranstion
       }}
     >
       <Container
-        sx={
-          {
-            /* maxWidth: ['540px', '540px', '540px', '1024px'] */
-          }
-        }
+        sx={{
+          /* maxWidth: ['540px', '540px', '540px', '1024px'] */
+          mt: 4
+        }}
         p={4}
       >
         {children}
