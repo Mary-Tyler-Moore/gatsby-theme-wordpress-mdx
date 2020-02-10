@@ -79,7 +79,7 @@ module.exports = {
         // config optional
         headerHeight: 64,
         sideBarWidth: 240,
-        showToggle: true,
+        showButtonTheme: true,
         multipleBackground: true,
         logo: `src/images/logo.svg` // This path is relative to the root of the site.
       }

@@ -14,7 +14,7 @@ module.exports = options => {
       config: {
         headerHeight: options.headerHeight || 64,
         sideBarWidth: options.sideBarWidth || 240,
-        showToggle: !!options.showToggle,
+        showButtonTheme: !!options.showButtonTheme,
         multipleBackground: !!options.multipleBackground,
         logo: options.logo || ''
       }

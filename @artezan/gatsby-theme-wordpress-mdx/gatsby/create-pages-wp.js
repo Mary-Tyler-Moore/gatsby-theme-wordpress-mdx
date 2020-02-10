@@ -66,7 +66,7 @@ module.exports = async function CreatePagesWp(
     allPosts.forEach(({ node: post }) => {
       // Create the Gatsby page for this WordPress post
       createPage({
-        path: `/${post.wpData.slug}/`,
+        path: `${post.wpData.slug}`,
         component: postTemplate,
         context: {
           id: post.id
@@ -79,7 +79,7 @@ module.exports = async function CreatePagesWp(
     allPages.forEach(({ node: page }) => {
       // Create the Gatsby page for this WordPress page
       createPage({
-        path: `/${page.wpData.slug}/`,
+        path: `${page.wpData.slug}`,
         component: pageTemplate,
         context: {
           id: page.id

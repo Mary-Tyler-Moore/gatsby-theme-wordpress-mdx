@@ -2,17 +2,15 @@
 import * as React from 'react'
 import { jsx, Styled } from 'theme-ui'
 
-import { ToggleSwitch } from '../ToggleSwitch'
 import { ButtonIcon } from '../ButtonIcon'
 import { SideBarContext } from '../SideBarContext'
 import { SideBarNavList } from '../SideBarNavList'
-import { SideBarContainer } from '../SideBar/SideBarContainer'
 import { Link } from 'gatsby'
 import ImageDynamic from '../ImgDynamic/ImgDynamic'
 import { ButtonColor } from '../ButtonColor'
 
 export const Header = ({ config, links }) => {
-  const { headerHeight, showToggle, logo } = config
+  const { headerHeight, showButtonTheme, logo } = config
   const { state, dispatch } = React.useContext(SideBarContext)
   return (
     <>
@@ -38,11 +36,12 @@ export const Header = ({ config, links }) => {
           sx={{
             display: 'flex',
             alignItems: 'center',
-            minHeight: `${headerHeight}px`
+            height: `${headerHeight}px`
           }}
         >
+          {/* <Logo /> */}
           <Styled.div id="logo">
-            <Link to={'/'}>
+            <Link to={'/'} accessKey={'logo'} aria-label={'logo'}>
               {logo === '' ? (
                 `Logo`
               ) : (
@@ -52,12 +51,12 @@ export const Header = ({ config, links }) => {
                   }}
                   name={'logo'}
                   filename={logo}
+                  alt={'logo'}
                 />
               )}
             </Link>
-            {/* <Logo /> */}
           </Styled.div>
-
+          {/* Menu btn */}
           <Styled.div
             sx={{
               display: [
@@ -71,6 +70,7 @@ export const Header = ({ config, links }) => {
             }}
           >
             <ButtonIcon
+              aria-label={'menu'}
               onClick={() => dispatch({ type: 'openNav' })}
               iconPath="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
             />
@@ -87,9 +87,13 @@ export const Header = ({ config, links }) => {
             {/* Pages */}
             <SideBarNavList links={links} />
             {/* Toggle */}
-            {showToggle && (
+            {showButtonTheme && (
               // <ToggleSwitch toggleSwitchName="header-theme-toggle" />
-              <ButtonColor />
+              <ButtonColor
+                style={{
+                  border: theme => `1px solid ${theme.colors.background}`
+                }}
+              />
             )}
           </Styled.div>
         </Styled.div>

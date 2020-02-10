@@ -1,7 +1,8 @@
 /** @jsx jsx */
-import { jsx, Styled, useThemeUI } from 'theme-ui'
+import { jsx, Styled, useThemeUI, useColorMode } from 'theme-ui'
 import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
+import { useAllMdxWpPosts, useAllMdxWpPages } from '../Hooks'
 
 const convertArrayToObject = array =>
   array.reduce(
@@ -25,93 +26,22 @@ const Landing = ({
   if (images && images.length) {
     imagesFluid = convertArrayToObject(images)
   }
+  // helpers for mdx props
   const context = useThemeUI()
-  // Sort sections
-  /* const [sortSecctions, setSortSecctions] = useState([])
-  useEffect(() => {
-    setSortSecctions(
-      sections
-        .reduce(
-          (acc, current) => {
-            if (
-              current.frontmatter &&
-              current.frontmatter.section.toLowerCase() === 'features'
-            ) {
-              acc[0].featureGroup.push(current)
-            } else {
-              acc.push(current)
-            }
-            return acc
-          },
-          [{ featureGroup: [], frontmatter: { section: 'features' } }]
-        )
-        .sort((a, b) => {
-          return (
-            sectionsOrder.indexOf(a.frontmatter.section) -
-            sectionsOrder.indexOf(b.frontmatter.section)
-          )
-        })
-    )
-  }, [sections]) */
-  /*  return (
-    <div
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        // set this to `minHeight: '100vh'` for full viewport height original 256px
-        minHeight: '100vh'
-      }}
-    >
-      <main>
-        {sortSecctions.map((sectionComp, index) => (
-          <section key={index}>
-            {sectionComp.frontmatter.section.toLowerCase() === 'header' && (
-              <HeaderComponent {...sectionComp}></HeaderComponent>
-            )}
+  const [colorMode, setColorMode] = useColorMode()
+  const allMdxWpPosts = useAllMdxWpPosts()
+  const allMdxWpPages = useAllMdxWpPages()
 
-            {sectionComp.frontmatter.section.toLowerCase() === 'features' && (
-              <Content config={siteMetadata.config} bg={`backgroundFeatures`}>
-                <FeatureComponent
-                  features={[...sectionComp.featureGroup]}
-                ></FeatureComponent>
-              </Content>
-            )}
-            {console.log(sectionComp.frontmatter.section.toLowerCase())}
-            {sectionComp.frontmatter.section.toLowerCase() === 'about' && (
-              <Content config={siteMetadata.config} bg={`backgroundAbout`}>
-                <AboutSection {...sectionComp}></AboutSection>
-              </Content>
-            )}
-            {sectionComp.frontmatter.section.toLowerCase() === 'footer' && (
-              <Content
-                style={{
-                  marginTop: '2%'
-                }}
-                config={siteMetadata.config}
-                bg={`backgroundFooter`}
-              >
-                <FooterSection {...sectionComp}></FooterSection>
-              </Content>
-            )}
-            {sectionComp.frontmatter.section.toLowerCase() === 'general' && (
-              <Content config={siteMetadata.config} bg={`backgroundGeneral`}>
-                <GeneralSection {...sectionComp}></GeneralSection>
-              </Content>
-            )}
-            {sectionComp.frontmatter.section.toLowerCase() ===
-              'lastedposts' && (
-              <Content config={siteMetadata.config} bg={`backgroundPost`}>
-                <LastedPosts {...sectionComp} />
-              </Content>
-            )}
-          </section>
-        ))}
-      </main>
-    </div>
-  ) */
   return (
-    <Styled.div sx={{}}>
-      <MDXRenderer imagesFluid={imagesFluid} context={context}>
+    <Styled.div>
+      <MDXRenderer
+        imagesFluid={imagesFluid}
+        context={context}
+        colorMode={colorMode}
+        setColorMode={setColorMode}
+        allMdxWpPosts={allMdxWpPosts}
+        allMdxWpPages={allMdxWpPages}
+      >
         {body}
       </MDXRenderer>
     </Styled.div>

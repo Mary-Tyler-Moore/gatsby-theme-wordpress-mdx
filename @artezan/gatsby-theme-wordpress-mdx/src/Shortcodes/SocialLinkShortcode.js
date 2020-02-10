@@ -7,10 +7,12 @@ export const SocialLink = ({
   text = '',
   iconFill = 'currentcolor',
   iconSize = 50,
-  href = '#'
+  href = '#',
+  name
 }) => {
   return (
     <Styled.a
+      aria-label={name}
       href={href}
       sx={{
         color: 'primary',

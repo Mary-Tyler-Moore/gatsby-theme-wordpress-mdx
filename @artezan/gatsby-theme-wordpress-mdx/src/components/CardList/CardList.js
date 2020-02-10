@@ -22,7 +22,7 @@ export const CardList = ({ listItems }) => {
         }}
       >
         {listItems.map((item, index) => {
-          const { slug } = item
+          const { slug, title } = item
 
           return (
             <Box
@@ -33,6 +33,7 @@ export const CardList = ({ listItems }) => {
               }}
             >
               <Link
+                aria-label={title}
                 to={slug}
                 sx={{
                   display: 'flex',
@@ -43,7 +44,7 @@ export const CardList = ({ listItems }) => {
                   ':focus': {
                     outline: 'none',
                     boxShadow: theme =>
-                      `${theme.shadows[0]} ${theme.colors.textMuted}`
+                      `${theme.shadows[1]} ${theme.colors.textMuted}`
                   }
                 }}
               >

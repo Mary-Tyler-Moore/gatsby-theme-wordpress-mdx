@@ -9,7 +9,7 @@ import { ButtonColor } from '../ButtonColor'
 
 export const SideBar = ({ config, links }) => {
   const { state } = React.useContext(SideBarContext)
-  const { sideBarWidth, headerHeight, showToggle } = config
+  const { sideBarWidth, headerHeight, showButtonTheme } = config
   const conditionalLeft = state.isNavOpen ? 0 : sideBarWidth
   return (
     <Styled.div
@@ -72,7 +72,13 @@ export const SideBar = ({ config, links }) => {
               justifyContent: 'space-between'
             }}
           >
-            {showToggle && <ButtonColor />}
+            {showButtonTheme && (
+              <ButtonColor
+                style={{
+                  border: theme => `1px solid ${theme.colors.background}`
+                }}
+              />
+            )}
           </Styled.div>
         </Styled.div>
       </Styled.div>

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Downshift from 'downshift'
 import { Styled, jsx } from 'theme-ui'
 
@@ -26,17 +26,10 @@ export const SearchBar = ({ filterData, onSearch }) => {
     onSearch(selectedItems)
   }, [selectedItems])
 
-  const items = [
-    { value: 'apple' },
-    { value: 'pear' },
-    { value: 'orange' },
-    { value: 'grape' },
-    { value: 'banana' }
-  ]
-
   return (
     <div>
       <Downshift
+        id="search"
         stateReducer={stateReducer}
         onChange={handleCahange}
         selectedItem={null}
@@ -58,6 +51,7 @@ export const SearchBar = ({ filterData, onSearch }) => {
         }) => (
           <div>
             <Styled.div
+              aria-label={'search'}
               sx={{
                 display: 'flex',
                 flexWrap: 'wrap',
@@ -77,7 +71,6 @@ export const SearchBar = ({ filterData, onSearch }) => {
                       <Styled.div
                         sx={{
                           appearance: 'none',
-                          display: 'inline-block',
                           textAlign: 'center',
                           lineHeight: 'inherit',
                           textDecoration: 'none',
@@ -107,6 +100,7 @@ export const SearchBar = ({ filterData, onSearch }) => {
 
             <div style={{ position: 'relative' }}>
               <div
+                aria-labelledby=""
                 style={{
                   display: 'flex',
                   alignItems: 'center'
@@ -114,6 +108,8 @@ export const SearchBar = ({ filterData, onSearch }) => {
                 {...getRootProps({}, { suppressRefError: true })}
               >
                 <input
+                  aria-label={'search'}
+                  aria-labelledby=""
                   sx={{
                     backgroundColor: 'muted',
                     display: 'flex',
@@ -139,14 +135,7 @@ export const SearchBar = ({ filterData, onSearch }) => {
                   }}
                   {...getInputProps({
                     placeholder: 'Search Tags',
-                    onClick: () => toggleMenu(),
-                    onKeyDown(e) {
-                      if (e.key === 'Enter' && highlightedIndex === null) {
-                        return selectedItem
-                          ? onSearch(selectedItem.value)
-                          : null
-                      }
-                    }
+                    onClick: () => toggleMenu()
                   })}
                 />
 
@@ -179,6 +168,8 @@ export const SearchBar = ({ filterData, onSearch }) => {
                 <Styled.div>
                   <ul
                     {...getMenuProps()}
+                    aria-label="list"
+                    aria-labelledby=""
                     sx={{
                       m: 0,
                       pl: 0,
@@ -214,7 +205,7 @@ export const SearchBar = ({ filterData, onSearch }) => {
                                 p: 3,
                                 margin: 0,
                                 borderBottomStyle: 'solid',
-                                borderBottomWidth: 0,
+                                borderBottomWidth: '2px',
                                 borderColor: 'background',
                                 listStyle: 'none',
 
@@ -239,6 +230,9 @@ export const SearchBar = ({ filterData, onSearch }) => {
 }
 
 const stateReducer = (state, changes) => {
+  if (changes && typeof changes.inputValue === 'string') {
+    changes.inputValue = changes.inputValue.toLowerCase()
+  }
   switch (changes.type) {
     case Downshift.stateChangeTypes.keyDownEnter:
     case Downshift.stateChangeTypes.clickItem:

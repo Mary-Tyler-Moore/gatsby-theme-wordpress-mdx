@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import * as React from 'react'
+import React, { useCallback } from 'react'
 import { jsx } from 'theme-ui'
 import { CardList } from '../CardList'
 import { SearchBar } from '../SearchBar/SearchBar'
@@ -8,15 +8,19 @@ export const Posts = ({
   allMdxWpPosts,
   numOfPosts,
   lastedFirst = true,
-  selectedTag,
+  showSearchBar = true,
   ...rest
 }) => {
   const [searchParam, setSearchParam] = React.useState([])
 
-  const handleSearchParam = filterValue => {
+  /*  const handleSearchParam = filterValue => {
     const values = filterValue.map(({ value }) => value)
     setSearchParam(values)
-  }
+  } */
+  const handleSearchParam = useCallback(filterValue => {
+    const values = filterValue.map(({ value }) => value)
+    setSearchParam(values)
+  })
 
   const { nodes: posts } = allMdxWpPosts
   // Map all posts
@@ -62,7 +66,7 @@ export const Posts = ({
       if (current.type === 'MDX') {
         const arrTags = current.tags.reduce((a, c) => {
           if (!acc.some(ta => ta && ta.value === c)) {
-            a.push({ value: c })
+            a.push({ value: c.toLowerCase() })
           }
           return a
         }, [])
@@ -70,7 +74,7 @@ export const Posts = ({
       } else {
         const arrTags = current.tags.reduce((a, c) => {
           if (!acc.some(ta => ta && ta.value === c.name)) {
-            a.push({ value: c.name })
+            a.push({ value: c.name.toLowerCase() })
           }
           return a
         }, [])
@@ -95,10 +99,12 @@ export const Posts = ({
 
   return (
     <>
-      <SearchBar
-        filterData={listTags}
-        onSearch={filterValue => handleSearchParam(filterValue)}
-      />
+      {showSearchBar && (
+        <SearchBar
+          filterData={listTags}
+          onSearch={filterValue => handleSearchParam(filterValue)}
+        />
+      )}
       <CardList {...rest} listItems={filterPost} />
     </>
   )

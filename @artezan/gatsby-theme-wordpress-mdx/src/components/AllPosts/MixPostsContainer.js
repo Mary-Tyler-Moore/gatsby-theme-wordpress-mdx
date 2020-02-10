@@ -1,5 +1,4 @@
 /** @jsx jsx */
-import { StaticQuery, graphql } from 'gatsby'
 import { jsx } from 'theme-ui'
 import { useAllMdxWpPosts } from '../../Hooks'
 import { Posts } from './Posts'

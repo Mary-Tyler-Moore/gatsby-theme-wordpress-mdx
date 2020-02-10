@@ -16,7 +16,7 @@ function CreateNodeWP({
     date: node.date,
     parent: node.id,
     children: [],
-    wpData: { ...node },
+    wpData: { ...node, slug: `/${node.slug}/` },
     id: createNodeId(`p-${node.id}`),
     internal: {
       type: 'MdxWpPosts',
@@ -75,7 +75,7 @@ function CreateNodeWPPage({
     parent: node.id,
     title: node.title,
     children: [],
-    wpData: { ...node },
+    wpData: { ...node, slug: `/${node.slug}/` },
     id: createNodeId(`pa-${node.id}`),
     internal: {
       type: 'MdxWpPages',

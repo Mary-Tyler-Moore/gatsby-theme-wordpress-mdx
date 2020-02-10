@@ -10,7 +10,7 @@ export const Seo = ({
   image,
   path,
   keywords = [],
-  lang = 'eng'
+  lang = 'en'
 }) => {
   const formatTitleTemplate = `${title} ${
     titleTemplate ? `| ${titleTemplate}` : ''

@@ -1,8 +1,6 @@
 /** @jsx jsx */
 import { jsx, Styled } from 'theme-ui'
 
-import { Icon } from '../Icon'
-
 export const SideBarNavItem = ({ icon, title, isActive }) => (
   <Styled.div
     sx={{

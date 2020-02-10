@@ -4,7 +4,6 @@ import { jsx, Styled, useThemeUI } from 'theme-ui'
 import Img from 'gatsby-image'
 import { Tag } from '../Tag'
 import { formatDate, colorRange, getCurrentColors } from '../../helpers'
-import { css } from '@emotion/core'
 
 const CardImg = ({ fluid, title }) => (
   <Img

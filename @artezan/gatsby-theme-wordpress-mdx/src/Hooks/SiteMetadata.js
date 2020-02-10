@@ -14,7 +14,7 @@ export const useSiteMetadata = () => {
             config {
               headerHeight
               sideBarWidth
-              showToggle
+              showButtonTheme
               multipleBackground
               logo
             }
