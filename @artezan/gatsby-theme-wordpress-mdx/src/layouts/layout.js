@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React from 'react'
 import { Global } from '@emotion/core'
-import { jsx, Styled, css } from 'theme-ui'
+import { jsx, Styled, css, useColorMode } from 'theme-ui'
 import { graphql, useStaticQuery } from 'gatsby'
 import { Location } from '@reach/router'
 import { SideBarProvider } from '../components/SideBarContext'
@@ -29,6 +29,9 @@ const Layout = ({ children }) => {
           siteImage
           config {
             headerHeight
+            colorModes {
+              default
+            }
           }
         }
       }
@@ -42,6 +45,10 @@ const Layout = ({ children }) => {
     siteImage,
     config
   } = data.site.siteMetadata
+  const [colorMode, setColorMode] = useColorMode()
+  if (config.colorModes.default !== '' && colorMode === 'dark') {
+    setColorMode(config.colorModes.default)
+  }
   return (
     <>
       <Styled.root>

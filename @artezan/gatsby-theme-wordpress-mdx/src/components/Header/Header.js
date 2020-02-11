@@ -10,7 +10,7 @@ import ImageDynamic from '../ImgDynamic/ImgDynamic'
 import { ButtonColor } from '../ButtonColor'
 
 export const Header = ({ config, links }) => {
-  const { headerHeight, showButtonTheme, logo } = config
+  const { headerHeight, logo, navButtonTheme } = config
   const { state, dispatch } = React.useContext(SideBarContext)
   return (
     <>
@@ -87,12 +87,16 @@ export const Header = ({ config, links }) => {
             {/* Pages */}
             <SideBarNavList links={links} />
             {/* Toggle */}
-            {showButtonTheme && (
+            {navButtonTheme.showButtonTheme && (
               // <ToggleSwitch toggleSwitchName="header-theme-toggle" />
               <ButtonColor
                 style={{
                   border: theme => `1px solid ${theme.colors.background}`
                 }}
+                themes={navButtonTheme.colorsModes}
+                children={
+                  navButtonTheme.text !== '' ? navButtonTheme.text : null
+                }
               />
             )}
           </Styled.div>

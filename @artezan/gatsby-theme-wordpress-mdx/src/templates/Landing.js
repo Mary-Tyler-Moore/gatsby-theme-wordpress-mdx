@@ -55,7 +55,6 @@ export const contentQuery = graphql`
         title
         siteURL
         config {
-          multipleBackground
           headerHeight
         }
       }

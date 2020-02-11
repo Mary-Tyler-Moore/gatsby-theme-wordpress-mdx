@@ -46,20 +46,26 @@ export default {
   initialColorModeName: 'dark',
 
   colors: {
-    text: '#faf9f9',
-    textSecondary: '#D5CCCC',
+    text: '#ffffff',
+    textSecondary: '#ccd0d6',
     textMuted: '#667284',
-    primary: '#EEEBE8',
-    secondary: '#D55F8F',
-    muted: '#1e2129',
-    background: '#333745',
+    primary: '#04d0d9',
+    secondary: '#FBF8EF',
+    muted: '#262c35',
+    background: '#353e4a',
     transparent: `rgba(0,0,0,0)`,
     imgShadow: '11px 7px 20px 12px rgb(0, 0, 0)',
-    shadow: '',
+    shadowCard: '',
     backgroundNavBar: 'background',
     backgroundSideBar: 'background',
     activeTextBar: 'secondary',
     textBar: 'primary',
+    borderRadiusCard: 1,
+    backgroundCard: 'muted',
+    hoverCard: {
+      filter: 'brightness(105%)'
+    },
+    focusCard: {},
 
     modes: {
       light: {
@@ -86,23 +92,7 @@ export default {
         background: '#131127',
         transparent: `rgba(0,0,0,0)`,
         imgShadow: '11px 7px 20px 12px rgb(0, 0, 0)',
-        shadow: '',
-        backgroundNavBar: 'background',
-        backgroundSideBar: 'background',
-        activeTextBar: 'secondary',
-        textBar: 'primary'
-      },
-      gray: {
-        text: '#ffffff',
-        textSecondary: '#ccd0d6',
-        textMuted: '#667284',
-        primary: '#04d0d9',
-        secondary: '#FBF8EF',
-        muted: '#262c35',
-        background: '#353e4a',
-        transparent: `rgba(0,0,0,0)`,
-        imgShadow: '11px 7px 20px 12px rgb(0, 0, 0)',
-        shadow: '',
+        shadowCard: '',
         backgroundNavBar: 'background',
         backgroundSideBar: 'background',
         activeTextBar: 'secondary',
@@ -131,12 +121,40 @@ export default {
         accent: '#E5B9B6⁣',
         muted: '#ffffffba',
         gray: 'hsl(10, 20%, 50%)',
-        shadow: '9px 8px 50px rgba(32,32,35,.1)',
+        shadowCard: '9px 8px 50px rgba(32,32,35,.1)',
         imgShadow: '6px 7px 20px 0px rgb(43, 43, 47)',
         backgroundNavBar: 'primary',
         backgroundSideBar: 'primary',
         activeTextBar: 'textSecondary',
         textBar: 'text'
+      },
+      numorphism: {
+        text: '#faf9f9',
+        textSecondary: '#D5CCCC',
+        textMuted: '#667284',
+        primary: '#EEEBE8',
+        secondary: '#D55F8F',
+        muted: '#1e2129',
+        background: '#333745',
+        transparent: `rgba(0,0,0,0)`,
+        backgroundNavBar: 'background',
+        backgroundSideBar: 'background',
+        activeTextBar: 'secondary',
+        textBar: 'primary',
+        borderRadiusCard: '50px',
+        shadowCard: `10px 10px 20px #2b2f3b, -10px -10px 20px #3b3f4f`,
+        imgShadow: `10px 10px 20px #2b2f3b, -10px -10px 20px #3b3f4f`,
+        backgroundCard: '#333745',
+        hoverCard: {
+          boxShadow: `inset 10px 10px 20px #2b2f3b, inset -10px -10px 20px #3b3f4f`
+        },
+        focusCard: {
+          '& > article': {
+            boxShadow: `inset 10px 10px 20px #2b2f3b, inset -10px -10px 20px #3b3f4f`
+          },
+          outline: 'none',
+          boxShadow: 'unset'
+        }
       }
     }
   },
@@ -153,6 +171,22 @@ export default {
     `0 0 0 2px`,
     '27px 24px 50px rgba(32,32,35,.1)'
   ],
+  cardsMdxWp: {
+    primary: {
+      display: 'flex',
+      flexDirection: 'column',
+      flex: '1 1 auto',
+      color: 'text',
+      fontFamily: 'body',
+      backgroundColor: theme => theme.colors.backgroundCard,
+      overflow: 'hidden',
+      borderRadius: theme => theme.colors.borderRadiusCard,
+      transition: '.2s linear all',
+      ':hover': theme => theme.colors.hoverCard,
+      boxShadow: theme => theme.colors.shadowCard,
+      cursor: 'pointer'
+    }
+  },
 
   layout: {
     content: {

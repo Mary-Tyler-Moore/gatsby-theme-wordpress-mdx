@@ -1,11 +1,18 @@
 /** @jsx jsx */
-import * as React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'gatsby'
-import { jsx, Flex, Box, Styled } from 'theme-ui'
+import { jsx, Flex, Box, Styled, useColorMode } from 'theme-ui'
 
 import { Card } from '../Card'
 
 export const CardList = ({ listItems }) => {
+  const [colorMode, setColorMode] = useColorMode()
+  const [sxStyle, setsxStyle] = useState({})
+  const handleClick = () => {
+    setsxStyle({
+      boxShadow: `inset 10px 10px 20px #2b2f3b, inset -10px -10px 20px #3b3f4f`
+    })
+  }
   return (
     <>
       <Styled.div
@@ -41,11 +48,11 @@ export const CardList = ({ listItems }) => {
                   textDecoration: 'none',
                   borderRadius: 1,
                   mb: 4,
-                  ':focus': {
+                  ':focus': theme => ({
+                    boxShadow: `${theme.shadows[1]} ${theme.colors.textMuted}`,
                     outline: 'none',
-                    boxShadow: theme =>
-                      `${theme.shadows[1]} ${theme.colors.textMuted}`
-                  }
+                    ...theme.colors.focusCard
+                  })
                 }}
               >
                 <Card {...item} />

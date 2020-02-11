@@ -79,8 +79,14 @@ module.exports = {
         // config optional
         headerHeight: 64,
         sideBarWidth: 240,
-        showButtonTheme: true,
-        multipleBackground: true,
+        navButtonTheme: {
+          showButtonTheme: true
+          // text: 'Change',
+          // colorsModes: ['deep', 'purple']
+        },
+        /* colorModes: {
+          default: 'gray'
+        }, */
         logo: `src/images/logo.svg` // This path is relative to the root of the site.
       }
     }

@@ -4,6 +4,7 @@ import { jsx, Styled, useThemeUI } from 'theme-ui'
 import Img from 'gatsby-image'
 import { Tag } from '../Tag'
 import { formatDate, colorRange, getCurrentColors } from '../../helpers'
+import { navigate } from 'gatsby'
 
 const CardImg = ({ fluid, title }) => (
   <Img
@@ -40,23 +41,7 @@ export const Card = ({
 
   return (
     <>
-      <article
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          flex: '1 1 auto',
-          color: 'text',
-          fontFamily: 'body',
-          backgroundColor: 'muted',
-          overflow: 'hidden',
-          borderRadius: 1,
-          transition: '.2s linear all',
-          ':hover': {
-            filter: 'brightness(105%)'
-          },
-          boxShadow: theme => theme.colors.shadow
-        }}
-      >
+      <article sx={{ variant: 'cardsMdxWp.primary' }}>
         {featuredImage &&
           featuredImage.childImageSharp &&
           featuredImage.childImageSharp.fluid && (
@@ -81,7 +66,7 @@ export const Card = ({
             display: 'flex',
             flexDirection: 'column',
             flex: '1 1 auto',
-            p: [2, 3]
+            p: [4, 4]
           }}
         >
           <Styled.h4

@@ -2,11 +2,12 @@ const path = require('path')
 // https://github.com/staticfuse/staticfuse/blob/master/packages/gatsby-theme-publisher/gatsby-config.js
 
 module.exports = options => {
+  const { navButtonTheme, colorModes } = options
   const config = {
     siteMetadata: {
       title: '',
       description: '',
-      keywords: [],
+      keywords: '',
       siteURL: '',
       siteImage: '',
       twitter: '',
@@ -14,9 +15,19 @@ module.exports = options => {
       config: {
         headerHeight: options.headerHeight || 64,
         sideBarWidth: options.sideBarWidth || 240,
-        showButtonTheme: !!options.showButtonTheme,
-        multipleBackground: !!options.multipleBackground,
-        logo: options.logo || ''
+        logo: options.logo || '',
+        navButtonTheme: {
+          showButtonTheme: !!navButtonTheme && !!navButtonTheme.showButtonTheme,
+          text:
+            navButtonTheme && navButtonTheme.text ? navButtonTheme.text : '',
+          colorsModes:
+            navButtonTheme && navButtonTheme.colorsModes
+              ? navButtonTheme.colorsModes
+              : ''
+        },
+        colorModes: {
+          default: colorModes && colorModes.default ? colorModes.default : ''
+        }
       }
     },
     plugins: [

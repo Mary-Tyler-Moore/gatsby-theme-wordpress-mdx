@@ -9,14 +9,15 @@ export const useSiteMetadata = () => {
             title
             description
             keywords
-            twitter
-            github
             config {
               headerHeight
               sideBarWidth
-              showButtonTheme
-              multipleBackground
               logo
+              navButtonTheme {
+                showButtonTheme
+                text
+                colorsModes
+              }
             }
           }
         }

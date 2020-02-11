@@ -9,9 +9,9 @@ export const ButtonColor = ({ style, themes, children }) => {
   const [nameTheme, setNameTheme] = React.useState('')
 
   // get themes
-  const getThemes = ['base', ...Object.keys(context.theme.colors.modes)]
+  const getThemes = ['dark', ...Object.keys(context.theme.colors.modes)]
 
-  const themesToShow = themes ? themes : getThemes
+  const themesToShow = themes && themes !== '' ? themes : getThemes
 
   React.useEffect(() => {
     setNameTheme(colorMode)
