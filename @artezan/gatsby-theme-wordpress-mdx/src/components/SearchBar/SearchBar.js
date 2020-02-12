@@ -68,24 +68,7 @@ export const SearchBar = ({ filterData, onSearch }) => {
                         mb: 1
                       }}
                     >
-                      <Styled.div
-                        sx={{
-                          appearance: 'none',
-                          textAlign: 'center',
-                          lineHeight: 'inherit',
-                          textDecoration: 'none',
-                          fontSize: 'inherit',
-                          fontWeight: 'bold',
-                          m: 0,
-                          px: 1,
-                          border: 0,
-                          borderRadius: 4,
-                          bg: 'primary',
-                          color: 'background',
-                          display: 'flex',
-                          alignItems: 'center'
-                        }}
-                      >
+                      <Styled.div sx={{ variant: 'searchMdxWp.tags' }}>
                         <span>{item.value}</span>
                         <ButtonIconSimple
                           onClick={() => removeItem(item)}
@@ -110,29 +93,7 @@ export const SearchBar = ({ filterData, onSearch }) => {
                 <input
                   aria-label={'search'}
                   aria-labelledby=""
-                  sx={{
-                    backgroundColor: 'muted',
-                    display: 'flex',
-                    flexBasis: '100%',
-                    outline: 'none',
-                    borderWidth: 0,
-                    borderStyle: 'solid',
-                    borderColor: 'background',
-                    borderRadius: 2,
-                    appearance: 'none',
-                    p: 3,
-                    mr: 2,
-                    fontFamily: 'body',
-                    fontSize: 2,
-                    color: 'inherit',
-                    '::placeholder': {
-                      color: 'textMuted'
-                    },
-                    ':focus ': {
-                      boxShadow: theme =>
-                        `${theme.shadows[1]} ${theme.colors.textMuted}`
-                    }
-                  }}
+                  sx={{ variant: 'searchMdxWp.input' }}
                   {...getInputProps({
                     placeholder: 'Search Tags',
                     onClick: () => toggleMenu()
@@ -158,11 +119,9 @@ export const SearchBar = ({ filterData, onSearch }) => {
               </div>
 
               <Styled.div
+                id="divWrapper"
                 sx={{
-                  backgroundColor: 'muted',
-                  borderRadius: 1,
-                  zIndex: 2,
-                  mt: 3
+                  variant: 'searchMdxWp.divWrapper'
                 }}
               >
                 <Styled.div>
@@ -171,12 +130,8 @@ export const SearchBar = ({ filterData, onSearch }) => {
                     aria-label="list"
                     aria-labelledby=""
                     sx={{
-                      m: 0,
-                      pl: 0,
-                      maxHeight: isOpen ? '310px' : '0px',
-                      overflowY: 'scroll',
-                      WbkitOverflowScrolling: 'touch',
-                      borderRadius: 1
+                      variant: 'searchMdxWp.ul',
+                      maxHeight: isOpen ? '310px' : '0px'
                     }}
                   >
                     {isOpen
@@ -193,6 +148,7 @@ export const SearchBar = ({ filterData, onSearch }) => {
                                 item
                               })}
                               sx={{
+                                variant: 'searchMdxWp.li',
                                 color:
                                   highlightedIndex === index ||
                                   selectedItems.some(
@@ -200,18 +156,7 @@ export const SearchBar = ({ filterData, onSearch }) => {
                                       itemSel === item.value
                                   )
                                     ? 'text'
-                                    : 'textMuted',
-                                cursor: 'pointer',
-                                p: 3,
-                                margin: 0,
-                                borderBottomStyle: 'solid',
-                                borderBottomWidth: '2px',
-                                borderColor: 'background',
-                                listStyle: 'none',
-
-                                ':hover': {
-                                  backgroundColor: 'muted'
-                                }
+                                    : 'textMuted'
                               }}
                             >
                               {item.value}

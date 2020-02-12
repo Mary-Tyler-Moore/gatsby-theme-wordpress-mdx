@@ -9,6 +9,7 @@ export const Icon = ({
   showBackground = true
 }) => (
   <svg
+    sx={{ variant: 'svgMdxWpx' }}
     style={{ ...style }}
     className={`${className}`}
     width={iconSize}

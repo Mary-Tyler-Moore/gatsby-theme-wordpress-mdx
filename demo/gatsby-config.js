@@ -6,11 +6,11 @@
 
 module.exports = {
   siteMetadata: {
-    title: 'WP MDX',
+    title: 'MDX WP',
     description: 'It is a WP with MDX blog ',
     keywords: ['GatsbyJs', 'React', 'theme-ui'],
     siteURL: 'http://artezan-blog.netlify.com',
-    siteImage: ''
+    siteImage: '/preview.png'
   },
   plugins: [
     'gatsby-transformer-sharp',

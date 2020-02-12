@@ -65,7 +65,8 @@ export default {
     hoverCard: {
       filter: 'brightness(105%)'
     },
-    focusCard: {},
+    onClickLink: {},
+    onClickCard: { filter: 'brightness(105%)' },
 
     modes: {
       light: {
@@ -127,8 +128,8 @@ export default {
         backgroundSideBar: 'primary',
         activeTextBar: 'textSecondary',
         textBar: 'text'
-      },
-      numorphism: {
+      }
+      /*   neumorphism: {
         text: '#faf9f9',
         textSecondary: '#D5CCCC',
         textMuted: '#667284',
@@ -148,14 +149,14 @@ export default {
         hoverCard: {
           boxShadow: `inset 10px 10px 20px #2b2f3b, inset -10px -10px 20px #3b3f4f`
         },
-        focusCard: {
-          '& > article': {
-            boxShadow: `inset 10px 10px 20px #2b2f3b, inset -10px -10px 20px #3b3f4f`
-          },
+        onClickLink: {
           outline: 'none',
           boxShadow: 'unset'
+        },
+        onClickCard: {
+          boxShadow: `inset 10px 10px 20px #2b2f3b, inset -10px -10px 20px #3b3f4f`
         }
-      }
+      } */
     }
   },
   // custom styles
@@ -185,6 +186,151 @@ export default {
       ':hover': theme => theme.colors.hoverCard,
       boxShadow: theme => theme.colors.shadowCard,
       cursor: 'pointer'
+    }
+  },
+
+  searchMdxWp: {
+    input: {
+      backgroundColor: 'muted',
+      display: 'flex',
+      flexBasis: '100%',
+      outline: 'none',
+      borderWidth: 0,
+      borderStyle: 'solid',
+      borderColor: 'background',
+      borderRadius: 2,
+      appearance: 'none',
+      p: 3,
+      mr: 2,
+      fontFamily: 'body',
+      fontSize: 2,
+      color: 'inherit',
+      '::placeholder': {
+        color: 'textMuted'
+      },
+      ':focus ': {
+        boxShadow: theme => `${theme.shadows[1]} ${theme.colors.textMuted}`
+      }
+    },
+    divWrapper: {
+      backgroundColor: 'muted',
+      borderRadius: 1,
+      zIndex: 2,
+      mt: 3
+    },
+    ul: {
+      m: 0,
+      pl: 0,
+      overflowY: 'scroll',
+      WbkitOverflowScrolling: 'touch',
+      borderRadius: 1
+    },
+    li: {
+      cursor: 'pointer',
+      p: 3,
+      margin: 0,
+      borderBottomStyle: 'solid',
+      borderBottomWidth: '2px',
+      borderColor: 'background',
+      listStyle: 'none',
+
+      ':hover': {
+        backgroundColor: 'muted'
+      }
+    },
+    tags: {
+      appearance: 'none',
+      textAlign: 'center',
+      lineHeight: 'inherit',
+      textDecoration: 'none',
+      fontSize: 'inherit',
+      fontWeight: 'bold',
+      m: 0,
+      px: 1,
+      border: 0,
+      borderRadius: 4,
+      bg: 'primary',
+      color: 'background',
+      display: 'flex',
+      alignItems: 'center'
+    }
+  },
+
+  buttonIconMdxWp: {
+    appearance: 'none',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    cursor: 'pointer',
+    color: 'primary',
+    backgroundColor: 'muted',
+    textAlign: 'center',
+    lineHeight: 'inherit',
+    textDecoration: 'none',
+    fontSize: 'inherit',
+    fontWeight: 'bold',
+    m: 0,
+    p: 0,
+    border: 0,
+    borderRadius: 2,
+    outline: 'none',
+    minWidth: 48,
+    height: 48,
+    ':focus ': {
+      boxShadow: theme => `${theme.colors.textMuted}`
+    }
+  },
+  buttonSimpleMdxWp: {
+    appearance: 'none',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    cursor: 'pointer',
+    color: 'background',
+    backgroundColor: 'primary',
+    textAlign: 'center',
+    lineHeight: 'inherit',
+    textDecoration: 'none',
+    fontSize: 'inherit',
+    fontWeight: 'bold',
+    m: 0,
+    p: 0,
+    border: 0
+  },
+  svgMdxWpx: {},
+
+  navItemMdxWp: {
+    normal: {
+      color: theme => theme.colors.textBar,
+      backgroundColor: 'transparent',
+      display: 'flex',
+      alignItems: 'center',
+      borderRadius: 2,
+      textTransform: 'capitalize',
+      pt: 3,
+      pb: 3,
+      pl: 4,
+      pr: 4,
+      transition: '.2s linear background-color, .2s linear color',
+      fontFamily: 'body',
+      fontSize: 2,
+      fontWeight: theme => theme.fontWeights.body,
+      lineHeight: 'normal',
+      textDecoration: 'none',
+      outline: 'none',
+      svg: {
+        marginRight: 2
+      },
+
+      ':hover': {
+        color: theme => theme.colors.activeTextBar,
+        backgroundColor: 'muted'
+      }
+    },
+    active: {
+      variant: 'navItemMdxWp.normal',
+      color: theme => theme.colors.activeTextBar,
+      backgroundColor: 'muted'
     }
   },
 

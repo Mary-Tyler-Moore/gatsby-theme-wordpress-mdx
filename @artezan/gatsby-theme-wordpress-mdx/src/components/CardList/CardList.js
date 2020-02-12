@@ -49,9 +49,10 @@ export const CardList = ({ listItems }) => {
                   borderRadius: 1,
                   mb: 4,
                   ':focus': theme => ({
+                    '& > article': theme.colors.onClickCard,
                     boxShadow: `${theme.shadows[1]} ${theme.colors.textMuted}`,
                     outline: 'none',
-                    ...theme.colors.focusCard
+                    ...theme.colors.onClickLink
                   })
                 }}
               >

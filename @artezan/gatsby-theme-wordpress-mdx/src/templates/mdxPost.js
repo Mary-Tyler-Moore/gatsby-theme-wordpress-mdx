@@ -163,7 +163,7 @@ export const pageQuery = graphql`
       }
     }
     mdxWpPosts(id: { eq: $id }) {
-      date(formatString: "MMMM DD, YYYY")
+      date
       mdxData {
         timeToRead
         wordCount {
