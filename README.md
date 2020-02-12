@@ -1,5 +1,5 @@
 <p align="center">
-    <img width='200px' alt="Gatsby Theme" src="./dn.png" />
+    <img width='200px' alt="Gatsby Theme" src="./@artezan/gatsby-theme-wordpress-mdx/dn.png" />
   
 </p>
 <h1 align="center">
@@ -225,6 +225,7 @@ Not matter what kind of file, you can add a Fluid IMG in the front matter like t
 
 ```md
 ---
+
 nameImage: about-image1.jpg
 ---## Title
 ```
@@ -235,6 +236,7 @@ or
 
 ```md
 ---
+
 nameImage: [about-image1.jpg, about-image2.jpg]
 ---## Title
 ```
