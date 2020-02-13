@@ -27,6 +27,13 @@ const Layout = ({ children }) => {
   }
   return (
     <>
+      <Seo
+        title={title}
+        description={description}
+        keywords={keywords}
+        siteURL={siteURL}
+        image={siteImage}
+      />
       <Styled.root>
         <Global
           styles={css({
@@ -58,14 +65,6 @@ const Layout = ({ children }) => {
 
               return (
                 <>
-                  <Seo
-                    title={title}
-                    titleTemplate={formatPathname(pathname)}
-                    description={description}
-                    keywords={keywords}
-                    siteURL={siteURL}
-                    image={siteImage}
-                  />
                   <HeaderContainer />
                   <SideBarContainer />
                   <LightPanel />
