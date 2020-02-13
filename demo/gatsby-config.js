@@ -9,7 +9,7 @@ module.exports = {
     title: 'MDX WP',
     description: 'It is a WP with MDX blog ',
     keywords: ['GatsbyJs', 'React', 'theme-ui'],
-    siteURL: 'http://artezan-blog.netlify.com',
+    siteURL: 'https://artezan-blog.netlify.com',
     siteImage: 'preview.png'
   },
   plugins: [
