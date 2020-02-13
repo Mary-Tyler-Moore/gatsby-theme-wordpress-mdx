@@ -11,7 +11,7 @@ module.exports = {
     titleTemplate: '%s · The Real Hero',
     keywords: ['GatsbyJs', 'React', 'theme-ui'],
     siteURL: 'https://artezan-blog.netlify.com', // No trailing slash allowed!
-    siteImage: '/preview.png', // Path to your image you placed in the 'static' folder
+    siteImage: '/imgpre.png', // Path to your image you placed in the 'static' folder
     twitterUsername: '@CArtezan',
     author: {
       name: 'Cesar Artezan'
