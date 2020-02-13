@@ -7,7 +7,6 @@ module.exports = options => {
     siteMetadata: {
       title: '',
       description: '',
-      titleTemplate: '',
       keywords: '',
       siteURL: '',
       siteImage: '',
@@ -63,7 +62,8 @@ module.exports = options => {
       {
         resolve: 'gatsby-source-filesystem',
         options: {
-          path: path.resolve('src')
+          name: 'sections',
+          path: path.resolve('src/sections')
         }
       }
     ]

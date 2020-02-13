@@ -12,13 +12,7 @@ const convertArrayToObject = array =>
 
 const Landing = ({
   data: {
-    mdx: {
-      body,
-      frontmatter: { sections: sectionsOrder }
-    },
-    site: {
-      siteMetadata: { config }
-    },
+    mdx: { body },
     allImageSharp: { nodes: images }
   }
 }) => {
@@ -50,21 +44,9 @@ const Landing = ({
 
 export const contentQuery = graphql`
   query landingQuery($id: String) {
-    site {
-      siteMetadata {
-        title
-        siteURL
-        config {
-          headerHeight
-        }
-      }
-    }
     mdx(id: { eq: $id }) {
       id
       body
-      frontmatter {
-        sections
-      }
     }
     allImageSharp {
       nodes {

@@ -118,9 +118,12 @@ module.exports = {
     title: 'MDX WP',
     description: 'It is a WP with MDX blog ',
     keywords: ['GatsbyJs', 'React', 'theme-ui'],
-    siteURL: 'http://artezan-blog.netlify.com',
-    // Used for og:image and must be placed inside the `static` folder
-    siteImage: '/preview.png'
+    siteURL: 'https://artezan-blog.netlify.com', // No trailing slash allowed!
+    siteImage: '/preview.png', // Path to your image you placed in the 'static' folder
+    twitterUsername: '@CArtezan',
+    author: {
+      name: 'Cesar Artezan'
+    }
   }
 }
 ```
@@ -186,7 +189,9 @@ colors: {
 ### Folder Structure 📁
 
 - `src/index.mdx` is required, in this file you can generate the landing page
-- `src/page` is without "s" because mdx plugin
+- `src/page` is required but it could be empty, is without "s" because mdx plugin
+- `src/sections` is required but it could be empty, in this folder could be the sections of the landing page
+- `src/post` is required if `sourceMdxPosts` is true
 
 ```
 Root
@@ -198,6 +203,8 @@ Root
 │   └───post
 │   │   │ mdx files
 │   └───page
+│   │   │ mdx files
+│   └───sections
 │   │   │ mdx files
 │   └───images
 │   │   │ png jpg svg files
@@ -227,10 +234,7 @@ Not matter what kind of file, you can add a Fluid IMG in the front matter like t
 ---
 
 nameImage: about-image1.jpg
-
----
-
-## Title
+---## Title
 ```
 
 And then acces to the imagen with `props.imagesFluid['about-image1.jpg']`
@@ -241,10 +245,7 @@ or
 ---
 
 nameImage: [about-image1.jpg, about-image2.jpg]
-
----
-
-## Title
+---## Title
 ```
 
 And then acces to the imagen with `props.imagesFluid['about-image2.jpg']` `props.imagesFluid['about-image1.jpg']`
