@@ -74,7 +74,7 @@ gatsby new WpMdx artezan/gatsby-theme-wordpress-mdx
 |                   | `colorsModes`     | String[ ] | False    | This Array contains the posible themes, otherwise it will show all the themes                                      |
 | `colorModes`      |                   | Obj       | False    | Use this obj if you want to set as default a specific theme                                                        |
 |                   | `default`         | String    | False    | Name of the theme                                                                                                  |
-| `logo`            |                   | String    | False    | This path is relative to the root of the site. And show the logo in the header bar                                 |
+| `logo`            |                   | String    | False    | This path is relative to the root of the site. And show the logo in the header bar                                 |  |
 
 #### Example usage 🔎
 
@@ -260,23 +260,23 @@ Inside `src/index.mdx` you can access to this variable:
 
 - All the short codes have the `sx` prop for styles see [sx-prop](https://theme-ui.com/sx-prop/)
 
-| Code                                         |       props       |                                                                                             description |
-| -------------------------------------------- | :---------------: | ------------------------------------------------------------------------------------------------------: |
-| `<AboutLayout />`                            |                   |                                                                                Layout for about section |
-|                                              |        sx         |                                                                                                   style |
-|                                              |  aboutImageFluid  |                                                                                               Fluid Img |
-| `<AllPosts />`                               |                   |                                                                  Returns a list of cards with all posts |
-|                                              |    numOfPosts     |                                                                              number of the post to show |
-|                                              |   showSearchBar   |                                                                   Show a search bar that filter by tags |
+| Code                                         | props             | description                                                                                             |
+| -------------------------------------------- | ----------------- | ------------------------------------------------------------------------------------------------------- |
+| `<AboutLayout />`                            |                   | Layout for about section                                                                                |
+|                                              | sx                | style                                                                                                   |
+|                                              | aboutImageFluid   | Fluid Img                                                                                               |
+| `<AllPosts />`                               |                   | Returns a list of cards with all posts                                                                  |
+|                                              | numOfPosts        | number of the post to show                                                                              |
+|                                              | showSearchBar     | Show a search bar that filter by tags                                                                   |
 | `<BgImage />`                                |                   | For more info see (gatsby-background-image)[https://www.gatsbyjs.org/packages/gatsby-background-image/] |
 | `<ButtonTheme /> | | Change the colors modes |
-|                                              |      themes       |                                      Array of the posible themes, if it dont set returns all the themes |
-|                                              |     Children      |                             Text of the btn, otherwise the txt of the btn will be the name of the theme |
-| `<ContainerWrapper />`                       |                   |                                                                                Container with max-width |
-| FeaturesWrapper                              |                   |                                                                             Flex container for features |
-| `<FeatureLayout />`                          |                   |                     Layout for feature sections, this will show a img on the top and text on the bottom |
-|                                              | featureImageFluid |                                                                                   Fluid img for feature |
-| `<ImgGatsby />`                              |                   |                                                                           Short code for `gatsby-image` |
-| `<Div />`                                    |                   |                                                                                 `div` tag with sx props |
-| `<SocialLink />`                             |                   |                             Generate a btn icon that redirect to a social link (facebook, twitter, etc) |
+|                                              | themes            | Array of the posible themes, if it dont set returns all the themes                                      |
+|                                              | Children          | Text of the btn, otherwise the txt of the btn will be the name of the theme                             |
+| `<ContainerWrapper />`                       |                   | Container with max-width                                                                                |
+| FeaturesWrapper                              |                   | Flex container for features                                                                             |
+| `<FeatureLayout />`                          |                   | Layout for feature sections, this will show a img on the top and text on the bottom                     |
+|                                              | featureImageFluid | Fluid img for feature                                                                                   |
+| `<ImgGatsby />`                              |                   | Short code for `gatsby-image`                                                                           |
+| `<Div />`                                    |                   | `div` tag with sx props                                                                                 |
+| `<SocialLink />`                             |                   | Generate a btn icon that redirect to a social link (facebook, twitter, etc)                             |
 |                                              |                   |                                                                                                         |

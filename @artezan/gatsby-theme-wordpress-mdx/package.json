@@ -47,7 +47,15 @@
   "keywords": [
     "gatsby",
     "gatsby-theme",
-    "gatsby-plugin"
+    "gatsby-plugin",
+    "WordPress",
+    "MDX",
+    "Theme-UI",
+    "gatsby-source-wordpress",
+    "gatsby-plugin-mdx",
+    "gatsby-plugin-theme-ui",
+    "gatsby-background-image",
+    "react-animated-css"
   ],
   "husky": {
     "hooks": {
