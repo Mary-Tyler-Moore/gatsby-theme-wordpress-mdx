@@ -20,6 +20,7 @@ export const WpPage = ({ data }) => {
         <Seo
           title={`${site.siteMetadata.title} | ${title}`}
           description={excerpt}
+          isBlogPostPage
         />
         <Styled.h1>{title}</Styled.h1>
         <Styled.div

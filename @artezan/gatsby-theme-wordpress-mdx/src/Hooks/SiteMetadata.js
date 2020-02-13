@@ -9,6 +9,13 @@ export const useSiteMetadata = () => {
             title
             description
             keywords
+            titleTemplate
+            siteURL
+            siteImage
+            twitterUsername
+            author {
+              name
+            }
             config {
               headerHeight
               sideBarWidth
@@ -17,6 +24,9 @@ export const useSiteMetadata = () => {
                 showButtonTheme
                 text
                 colorsModes
+              }
+              colorModes {
+                default
               }
             }
           }

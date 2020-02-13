@@ -1,6 +1,8 @@
 import * as React from 'react'
 
 import Helmet from 'react-helmet'
+import { useSiteMetadata } from '../../Hooks'
+import SchemaOrg from './SchemaOrg'
 
 export const Seo = ({
   title,
@@ -8,61 +10,74 @@ export const Seo = ({
   description,
   siteURL,
   image,
-  path,
   keywords = [],
-  lang = 'en'
+  isBlogPostPage
 }) => {
-  const formatTitleTemplate = `${title} ${
+  const {
+    title: siteTitle,
+    description: siteDescription,
+    siteURL: siteHookUrl,
+    siteImage,
+    twitterUsername,
+    author
+  } = useSiteMetadata()
+  /*  const formatTitleTemplate = `${title} ${
     titleTemplate ? `| ${titleTemplate}` : ''
-  }`
+  }` */
+  const seoTitle = title || siteTitle
+  const seoDescription = description || siteDescription
+  const seoSiteUrl = siteURL || siteHookUrl
+  const seoUrlImage = isBlogPostPage
+    ? `${seoSiteUrl}/${image ? image : ''}`
+    : `${seoSiteUrl}${siteImage}`
 
+  console.log({
+    seoTitle,
+    seoDescription,
+    seoSiteUrl,
+    seoUrlImage,
+    keywords,
+    twitterUsername,
+    author
+  })
   return (
-    <Helmet
-      htmlAttributes={{
-        lang
-      }}
-      title={title}
-      titleTemplate={formatTitleTemplate}
-      /* link={[
-        {
-          rel: 'icon',
-          type: 'image/png',
-          sizes: '16x16',
-          href: `${siteURL}/images/favicon-16x16.png`
-        },
-        {
-          rel: 'icon',
-          type: 'image/png',
-          sizes: '32x32',
-          href: `${siteURL}/images/favicon-32x32.png`
-        }
-      ]} */
-    >
-      <meta name="description" content={description} />
-      <meta name="image" content={`${siteURL}/${image}`} />
-      <meta name="image:alt" content={description} />
-      <meta name="keywords" content={keywords.join(', ')} />
+    <>
+      <Helmet>
+        {/* General tags */}
+        <title>{seoTitle}</title>
+        <meta name="description" content={seoDescription} />
+        <meta name="image" content={seoUrlImage} />
+        <link rel="canonical" href={seoSiteUrl} />
+        <meta name="keywords" content={keywords.join(', ')} />
 
-      {/* Facebook */}
-      {path ? (
-        <meta property="og:type" content="article" />
-      ) : (
-        <meta property="og:type" content="website" />
-      )}
-      <meta property="og:title" content={formatTitleTemplate} />
-      <meta property="og:url" content={`${siteURL}${path ? path : ''}`} />
-      <meta property="og:description" content={description} />
-      <meta property="og:image" content={`${siteURL}/${image}`} />
-      <meta property="og:image:alt" content={description}></meta>
+        {/* OpenGraph tags */}
+        <meta property="og:url" content={seoSiteUrl} />
+        {isBlogPostPage ? (
+          <meta property="og:type" content="article" />
+        ) : (
+          <meta property="og:type" content="website" />
+        )}
+        <meta property="og:title" content={seoTitle} />
+        <meta property="og:description" content={seoDescription} />
+        <meta property="og:image" content={seoUrlImage} />
 
-      {/* Twitter */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={formatTitleTemplate} />
-      <meta name="twitter:url" content={`${siteURL}${path ? path : ''}`} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={`${siteURL}/${image}`} />
-      <meta name="twitter:image:alt" content={description}></meta>
-      <meta name="twitter:creator" content={siteURL}></meta>
-    </Helmet>
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:creator" content={twitterUsername} />
+        <meta name="twitter:title" content={seoTitle} />
+        <meta name="twitter:description" content={seoDescription} />
+        <meta name="twitter:image" content={seoUrlImage} />
+      </Helmet>
+      <SchemaOrg
+        isBlogPost={isBlogPostPage}
+        url={seoSiteUrl}
+        title={seoTitle}
+        image={seoUrlImage}
+        description={seoDescription}
+        siteUrl={siteHookUrl}
+        author={author}
+        defaultTitle={siteTitle}
+      />
+    </>
   )
 }

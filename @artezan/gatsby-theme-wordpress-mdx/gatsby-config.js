@@ -7,11 +7,15 @@ module.exports = options => {
     siteMetadata: {
       title: '',
       description: '',
+      titleTemplate: '',
       keywords: '',
       siteURL: '',
       siteImage: '',
-      twitter: '',
+      twitterUsername: '',
       github: '',
+      author: {
+        name: ''
+      },
       config: {
         headerHeight: options.headerHeight || 64,
         sideBarWidth: options.sideBarWidth || 240,

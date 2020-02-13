@@ -49,6 +49,7 @@ export const MdxPostTemplate = ({
                 ? featuredImage.childImageSharp.fluid.src.replace('/', '')
                 : ''
             }
+            isBlogPostPage
           />
           {featuredImage && (
             <Styled.div

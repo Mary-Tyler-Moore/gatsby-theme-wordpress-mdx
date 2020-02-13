@@ -36,6 +36,7 @@ const Page = ({ data: { mdx, site } }) => {
                   )
                 : ''
             }
+            isBlogPostPage
           />
           <Styled.div>
             <MDXRenderer>{mdx.body}</MDXRenderer>

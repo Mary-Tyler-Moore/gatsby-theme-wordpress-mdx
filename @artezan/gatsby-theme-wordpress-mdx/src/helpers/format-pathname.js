@@ -1,4 +1,5 @@
 export const formatPathname = pathname => {
+  console.log('pathname', pathname)
   const pathsArr = pathname.split('/')
 
   if (pathsArr.length >= 3) {

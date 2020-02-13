@@ -14,37 +14,13 @@ import { MDXProvider } from '@mdx-js/react'
 import * as Shortcodes from '../Shortcodes'
 import 'animate.css/animate.min.css'
 import ScrollAnimation from 'react-animate-on-scroll'
+import { useSiteMetadata } from '../Hooks'
 
 const shortcodes = { ...Shortcodes, ScrollAnimation }
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          title
-          description
-          keywords
-          siteURL
-          siteImage
-          config {
-            headerHeight
-            colorModes {
-              default
-            }
-          }
-        }
-      }
-    }
-  `)
-  const {
-    title,
-    description,
-    keywords,
-    siteURL,
-    siteImage,
-    config
-  } = data.site.siteMetadata
+  const data = useSiteMetadata()
+  const { title, description, keywords, siteURL, siteImage, config } = data
   const [colorMode, setColorMode] = useColorMode()
   if (config.colorModes.default !== '' && colorMode === 'dark') {
     setColorMode(config.colorModes.default)

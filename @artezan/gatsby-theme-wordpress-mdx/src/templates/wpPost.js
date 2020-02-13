@@ -50,6 +50,7 @@ export const WpPostTemplate = ({
                   )
                 : ''
             }
+            isBlogPostPage
           />
           {featuredImage && featuredImage.localFile && (
             <Styled.div
