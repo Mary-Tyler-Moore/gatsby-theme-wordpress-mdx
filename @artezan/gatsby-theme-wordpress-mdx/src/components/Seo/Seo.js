@@ -21,25 +21,12 @@ export const Seo = ({
     twitterUsername,
     author
   } = useSiteMetadata()
-  /*  const formatTitleTemplate = `${title} ${
-    titleTemplate ? `| ${titleTemplate}` : ''
-  }` */
   const seoTitle = title || siteTitle
   const seoDescription = description || siteDescription
   const seoSiteUrl = siteURL || siteHookUrl
   const seoUrlImage = isBlogPostPage
     ? `${siteHookUrl}/${image ? image : ''}`
     : `${siteHookUrl}${siteImage}`
-
-  console.log({
-    seoTitle,
-    seoDescription,
-    seoSiteUrl,
-    seoUrlImage,
-    keywords,
-    twitterUsername,
-    author
-  })
   return (
     <>
       <Helmet>

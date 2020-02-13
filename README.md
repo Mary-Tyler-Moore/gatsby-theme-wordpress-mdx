@@ -125,6 +125,8 @@ module.exports = {
 };
 ```
 
+For preview img see [developer twitter](https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/summary-card-with-large-image)
+
 ### Extending Themes and Colors 🦄
 
 Please read the guide [Shadowing in Gatsby Themes](https://www.gatsbyjs.org/docs/themes/shadowing/) and [Extending a theme](https://theme-ui.com/packages/gatsby-plugin#extending-a-theme) to understand how to customize the this theme! Generally speaking you will want to place your files into `src/@artezan/gatsby-theme-wordpress-mdx/` to shadow/override files. The Theme UI config can be configured by shadowing its files in `src/gatsby-plugin-theme-ui/`.

@@ -1,5 +1,5 @@
 <p align="center">
-    <img width='200px' alt="Gatsby Theme" src="./dn.png" />
+    <img width='200px' alt="Gatsby Theme" src="./@artezan/gatsby-theme-wordpress-mdx/dn.png" />
   
 </p>
 <h1 align="center">
@@ -118,15 +118,14 @@ module.exports = {
     title: 'MDX WP',
     description: 'It is a WP with MDX blog ',
     keywords: ['GatsbyJs', 'React', 'theme-ui'],
-    siteURL: 'https://artezan-blog.netlify.com', // No trailing slash allowed!
-    siteImage: '/preview.png', // Path to your image you placed in the 'static' folder
-    twitterUsername: '@CArtezan',
-    author: {
-      name: 'Cesar Artezan'
-    }
+    siteURL: 'http://artezan-blog.netlify.com',
+    // Used for og:image and must be placed inside the `static` folder
+    siteImage: '/preview.png'
   }
 }
 ```
+
+For preview img see [developer twitter](https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/summary-card-with-large-image)
 
 ### Extending Themes and Colors 🦄
 
@@ -189,9 +188,7 @@ colors: {
 ### Folder Structure 📁
 
 - `src/index.mdx` is required, in this file you can generate the landing page
-- `src/page` is required but it could be empty, is without "s" because mdx plugin
-- `src/sections` is required but it could be empty, in this folder could be the sections of the landing page
-- `src/post` is required if `sourceMdxPosts` is true
+- `src/page` is without "s" because mdx plugin
 
 ```
 Root
@@ -203,8 +200,6 @@ Root
 │   └───post
 │   │   │ mdx files
 │   └───page
-│   │   │ mdx files
-│   └───sections
 │   │   │ mdx files
 │   └───images
 │   │   │ png jpg svg files
