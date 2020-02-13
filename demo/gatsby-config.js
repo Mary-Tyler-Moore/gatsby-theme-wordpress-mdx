@@ -10,7 +10,7 @@ module.exports = {
     description: 'It is a WP with MDX blog ',
     keywords: ['GatsbyJs', 'React', 'theme-ui'],
     siteURL: 'http://artezan-blog.netlify.com',
-    siteImage: '/preview.png'
+    siteImage: 'preview.png'
   },
   plugins: [
     'gatsby-transformer-sharp',
