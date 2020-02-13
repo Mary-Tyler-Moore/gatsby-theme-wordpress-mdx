@@ -21,7 +21,8 @@ export const WpPostTemplate = ({
   author,
   featuredImage,
   excerpt,
-  site
+  site,
+  slug
 }) => {
   const context = useThemeUI()
   const colorScale = colorRange(
@@ -41,7 +42,7 @@ export const WpPostTemplate = ({
             title={`${site.siteMetadata.title} | ${title}`}
             description={excerpt}
             keywords={tags || []}
-            siteURL={site.siteMetadata.siteURL}
+            siteURL={`${site.siteMetadata.siteURL}${slug}`}
             image={
               featuredImage && featuredImage.localFile
                 ? featuredImage.localFile.childImageSharp.fluid.src.replace(
@@ -150,6 +151,7 @@ const WpPost = ({ data }) => {
         featuredImage={post.featured_media}
         excerpt={post.excerpt}
         site={site}
+        slug={post.slug}
       />
     </Content>
   )

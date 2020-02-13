@@ -28,8 +28,8 @@ export const Seo = ({
   const seoDescription = description || siteDescription
   const seoSiteUrl = siteURL || siteHookUrl
   const seoUrlImage = isBlogPostPage
-    ? `${seoSiteUrl}/${image ? image : ''}`
-    : `${seoSiteUrl}${siteImage}`
+    ? `${siteHookUrl}/${image ? image : ''}`
+    : `${siteHookUrl}${siteImage}`
 
   console.log({
     seoTitle,

@@ -22,7 +22,8 @@ export const MdxPostTemplate = ({
   site,
   excerpt,
   timeToRead,
-  wordCount
+  wordCount,
+  slug
 }) => {
   const context = useThemeUI()
   const colorScale = colorRange(
@@ -43,7 +44,7 @@ export const MdxPostTemplate = ({
             title={`${site.siteMetadata.title} | ${title}`}
             description={excerpt}
             keywords={tags || []}
-            siteURL={site.siteMetadata.siteURL}
+            siteURL={`${site.siteMetadata.siteURL}${slug}`}
             image={
               featuredImage
                 ? featuredImage.childImageSharp.fluid.src.replace('/', '')
@@ -148,6 +149,7 @@ const MdxPost = ({ data }) => {
         site={site}
         timeToRead={post.timeToRead}
         wordCount={post.wordCount.words}
+        slug={post.fields.slug}
       />
     </Content>
   )
@@ -183,6 +185,9 @@ export const pageQuery = graphql`
               }
             }
           }
+        }
+        fields {
+          slug
         }
       }
     }
