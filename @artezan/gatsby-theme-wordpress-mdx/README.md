@@ -40,15 +40,15 @@ This Plugin is a union of two worlds 🌓 the old WordPress and the new MDX. You
 - MDX source
 - WP source
 
-## Only 3 Steps
+## Only 3 Steps 🤯
 
-### 1.- Installation
+### 1.- Installation ⛏
 
 ```sh
 npm install gatsby-theme-wordpress-mdx
 ```
 
-### 2.- Configuration
+### 2.- Configuration ⚙
 
 ```js
 // gatsby-config.js
