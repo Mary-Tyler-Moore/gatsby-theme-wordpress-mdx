@@ -5,7 +5,7 @@
     "type": "git",
     "url": "https://github.com/jlengstorf/gatsby-theme-wordpress-mdx.git"
   },
-  "version": "1.0.2",
+  "version": "1.0.4",
   "main": "gatsby-config.js",
   "license": "MIT",
   "peerDependencies": {
@@ -55,7 +55,7 @@
     "gatsby-plugin-mdx",
     "gatsby-plugin-theme-ui",
     "gatsby-background-image",
-    "react-animated-css"
+    "react-animate-on-scroll"
   ],
   "husky": {
     "hooks": {

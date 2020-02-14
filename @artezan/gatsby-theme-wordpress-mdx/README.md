@@ -3,7 +3,7 @@
   
 </p>
 <h1 align="center">
-  @artezan/gatsby-theme-wordpress-mdx
+ gatsby-theme-wordpress-mdx
 </h1>
 
 <p align="center">
@@ -40,13 +40,78 @@ This Plugin is a union of two worlds 🌓 the old WordPress and the new MDX. You
 - MDX source
 - WP source
 
-## Installation
+## Only 3 Steps
+
+### 1.- Installation
 
 ```sh
-npm install @artezan/gatsby-theme-wordpress-mdx
+npm install gatsby-theme-wordpress-mdx
 ```
 
-### Install as a starter
+### 2.- Configuration
+
+```js
+// gatsby-config.js
+siteMetadata: {
+    title: 'MDX WP',
+    description: 'It is a WP with MDX blog ',
+    keywords: ['GatsbyJs', 'React', 'theme-ui'],
+    siteURL: 'https://artezan-blog.netlify.com', // No trailing slash allowed!
+    siteImage: '/preview.png', // Path to your image you placed in the 'static' folder
+    twitterUsername: '@CArtezan',
+    author: {
+      name: 'Cesar Artezan'
+    }
+  },
+  plugins: [
+    resolve: 'gatsby-theme-wordpress-mdx',
+    options:
+     {
+    // Requiered
+    sourceWordpress: {
+      sourcePost: true, // if true install gatsby-source-wordpress
+      sourcePage: true, // if true install gatsby-source-wordpress
+    },
+    // Requiered
+    sourceMdxPosts: true, // if true create `src/posts`
+    logo: `src/images/logo.svg` // This path is relative to the root of the site.
+     }
+  ]
+
+```
+
+### 3.- Folder Structure 📁
+
+- `src/index.mdx` is required, in this file you can generate the landing page
+- `src/page` is without "s" because mdx plugin
+- `src/sections` is required but it could be empty, this folder is for the sections imported in index.mdx
+
+```
+Root
+│   README.md
+│   gatsby-config.js
+└───src
+│   └───gatsby-plugin-theme-ui
+│   │   │ index.js
+│   └───post
+│   │   │ mdx files
+│   └───page
+│   │   │ mdx files
+│   └───sections
+│   │   │ mdx files
+│   └───images
+│   │   │ png jpg svg files
+│   │   │ logo.svg
+│   │ index.mdx
+│
+└───static
+    │   file021.png
+    │   favicon.ico
+```
+
+And that's it, now you can start code in index.mdx your landing page and the others page in `src/page` 👨‍💻
+
+<!-- ### Install as a starter
 
 This will generate a new site (with the folder name "cara") that pre-configures use of the theme including example content and additional plugins.
 
@@ -54,9 +119,9 @@ This will generate a new site (with the folder name "cara") that pre-configures 
 gatsby new WpMdx artezan/gatsby-theme-wordpress-mdx
 ```
 
-[**View the starter's code**](https://github.com/artezan/gatsby-theme-wordpress-mdx/tree/master/demo)
+[**View the starter's code**](https://github.com/artezan/gatsby-theme-wordpress-mdx/tree/master/demo) -->
 
-## Usage
+## Advance options
 
 ### Theme options ⚙️
 
@@ -185,31 +250,6 @@ colors: {
     }
 ```
 
-### Folder Structure 📁
-
-- `src/index.mdx` is required, in this file you can generate the landing page
-- `src/page` is without "s" because mdx plugin
-
-```
-Root
-│   README.md
-│   gatsby-config.js
-└───src
-│   └───gatsby-plugin-theme-ui
-│   │   │ index.js
-│   └───post
-│   │   │ mdx files
-│   └───page
-│   │   │ mdx files
-│   └───images
-│   │   │ png jpg svg files
-│   │ index.mdx
-│
-└───static
-    │   file021.png
-    │   favicon.ico
-```
-
 ### Editing the content 🗒️
 
 In `src/index.mdx` must have at least:
@@ -227,9 +267,10 @@ Not matter what kind of file, you can add a Fluid IMG in the front matter like t
 
 ```md
 ---
-
 nameImage: about-image1.jpg
----## Title
+---
+
+## Title
 ```
 
 And then acces to the imagen with `props.imagesFluid['about-image1.jpg']`
@@ -238,9 +279,10 @@ or
 
 ```md
 ---
-
 nameImage: [about-image1.jpg, about-image2.jpg]
----## Title
+---
+
+## Title
 ```
 
 And then acces to the imagen with `props.imagesFluid['about-image2.jpg']` `props.imagesFluid['about-image1.jpg']`

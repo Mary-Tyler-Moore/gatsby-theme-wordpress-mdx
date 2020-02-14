@@ -29,7 +29,7 @@ export const Seo = ({
     : `${siteHookUrl}${siteImage}`
   return (
     <>
-      <Helmet>
+      <Helmet defer={false}>
         {/* General tags */}
         <title>{seoTitle}</title>
         <meta name="description" content={seoDescription} />
