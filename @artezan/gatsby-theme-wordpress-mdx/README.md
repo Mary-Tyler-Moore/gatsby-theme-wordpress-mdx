@@ -83,7 +83,7 @@ siteMetadata: {
 ### 3.- Folder Structure 📁
 
 - `src/index.mdx` is required, in this file you can generate the landing page
-- `src/page` is without "s" because mdx plugin
+- `src/page` is required, it is without "s" because mdx plugin
 - `src/sections` is required but it could be empty, this folder is for the sections imported in index.mdx
 
 ```
@@ -93,7 +93,7 @@ Root
 └───src
 │   └───gatsby-plugin-theme-ui
 │   │   │ index.js
-│   └───post
+│   └───posts
 │   │   │ mdx files
 │   └───page
 │   │   │ mdx files
