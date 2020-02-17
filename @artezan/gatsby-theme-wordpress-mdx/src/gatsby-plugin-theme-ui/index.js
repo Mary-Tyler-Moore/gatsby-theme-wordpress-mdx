@@ -56,12 +56,12 @@ export default {
     transparent: `rgba(0,0,0,0)`,
     imgShadow: '11px 7px 20px 12px rgb(0, 0, 0)',
     shadowCard: '',
-    backgroundNavBar: 'background',
-    backgroundSideBar: 'background',
-    activeTextBar: 'secondary',
-    textBar: 'primary',
+    backgroundNavBar: '#353e4a',
+    backgroundSideBar: '#353e4a',
+    activeTextBar: '#FBF8EF',
+    textBar: '#04d0d9',
+    backgroundCard: '#262c35',
     borderRadiusCard: 1,
-    backgroundCard: 'muted',
     hoverCard: {
       filter: 'brightness(105%)'
     },
@@ -77,11 +77,13 @@ export default {
         secondary: '#90caf9',
         muted: '#fbf4fc',
         background: 'hsl(10, 10%, 98%)',
-        highlight: 'hsl(10, 40%, 90%)',
-        purple: 'hsl(250, 60%, 30%)',
-        gray: 'hsl(10, 20%, 50%)',
         transparent: `rgba(0,0,0,0)`,
-        imgShadow: '4px 10px 20px 0px rgb(43,43,47)'
+        imgShadow: '4px 10px 20px 0px rgb(43,43,47)',
+        backgroundNavBar: 'hsl(10, 10%, 98%)',
+        backgroundSideBar: 'hsl(10, 10%, 98%)',
+        activeTextBar: '#90caf9',
+        textBar: '#ff94c2',
+        backgroundCard: '#fbf4fc'
       },
       purple: {
         text: '#ffffff',
@@ -94,21 +96,25 @@ export default {
         transparent: `rgba(0,0,0,0)`,
         imgShadow: '11px 7px 20px 12px rgb(0, 0, 0)',
         shadowCard: '',
-        backgroundNavBar: 'background',
-        backgroundSideBar: 'background',
-        activeTextBar: 'secondary',
-        textBar: 'primary'
+        backgroundNavBar: '#131127',
+        backgroundSideBar: '#131127',
+        activeTextBar: '#688ce0',
+        textBar: '#a92aeb',
+        backgroundCard: '#1a1832'
       },
       deep: {
         text: 'hsl(210, 50%, 96%)',
         textSecondary: 'hsl(210, 50%, 96%)',
-        background: 'hsl(230, 25%, 18%)',
         primary: 'hsl(260, 100%, 80%)',
         secondary: 'hsl(290, 100%, 80%)',
-        highlight: 'hsl(260, 20%, 40%)',
         accent: 'hsl(290, 100%, 80%)',
         muted: 'hsla(230, 20%, 0%, 20%)',
-        gray: 'hsl(210, 50%, 60%)'
+        background: 'hsl(230, 25%, 18%)',
+        backgroundNavBar: 'hsl(230, 25%, 18%)',
+        backgroundSideBar: 'hsl(230, 25%, 18%)',
+        activeTextBar: 'hsl(290, 100%, 80%)',
+        textBar: 'hsl(260, 100%, 80%)',
+        backgroundCard: 'hsla(230, 20%, 0%, 20%)'
       },
       swiss: {
         text: '#207588',
@@ -124,10 +130,11 @@ export default {
         gray: 'hsl(10, 20%, 50%)',
         shadowCard: '9px 8px 50px rgba(32,32,35,.1)',
         imgShadow: '6px 7px 20px 0px rgb(43, 43, 47)',
-        backgroundNavBar: 'primary',
-        backgroundSideBar: 'primary',
-        activeTextBar: 'textSecondary',
-        textBar: 'text'
+        backgroundNavBar: '#AAD0D9',
+        backgroundSideBar: '#AAD0D9',
+        activeTextBar: '#4b6f77',
+        textBar: '#207588',
+        backgroundCard: '#ffffffba'
       }
       /*   neumorphism: {
         text: '#faf9f9',
@@ -276,8 +283,13 @@ export default {
     outline: 'none',
     minWidth: 48,
     height: 48,
+    transition: '.2s linear all',
     ':focus ': {
-      boxShadow: theme => `${theme.colors.textMuted}`
+      boxShadow: theme => `${theme.shadows[1]}${theme.colors.textMuted}`
+    },
+    ':hover ': {
+      backgroundColor: 'primary',
+      color: 'background'
     }
   },
   buttonSimpleMdxWp: {

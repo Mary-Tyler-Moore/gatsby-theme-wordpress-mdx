@@ -25,6 +25,7 @@ export default {
         backgroundSideBar: 'primary',
         activeTextBar: 'text',
         textBar: 'text',
+        backgroundCard: 'hsl(0, 0%, 96%)',
         shadowCard: '9px 8px 50px rgba(32,32,35,.1)',
         imgShadow: '6px 7px 20px 0px rgb(43, 43, 47)'
       }

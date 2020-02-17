@@ -202,13 +202,26 @@ In `src/gatsby-plugin-theme-ui/index.js` this is the basic colors keys
 
 ```js
 colors: {
-   text: '#ffffff',
+    // Color of headers
+    text: '#ffffff',
+    // Color of <p>
     textSecondary: '#ccd0d6',
+    // color of hover button and placeholder
     textMuted: '#667284',
     primary: '#04d0d9',
     secondary: '#FBF8EF',
     muted: '#262c35',
     background: '#353e4a',
+    transparent: `rgba(0,0,0,0)`,
+    imgShadow: '11px 7px 20px 12px rgb(0, 0, 0)',
+    shadowCard: '',
+    backgroundNavBar: '#353e4a',
+    backgroundSideBar: '#353e4a',
+    activeTextBar: '#FBF8EF',
+    textBar: '#04d0d9',
+    backgroundCard: '#262c35',
+    borderRadiusCard: 1,
+
 }
 ```
 
